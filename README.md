@@ -5,6 +5,4 @@ To open source code of elpAudio you need Game Maker 8.2 with GM8.2 Core and Netw
 Then download all of the files in the repository and click on "elpAudio.gm81". Done! Now you can do anything.
 
 # HOW TO USE:
--go to releases and download latest version of elpAudio
--open the elpAudio.exe
--enjoy!
+-go to releases and download latest version of elpAudio and open the elpAudio.exe. Enjoy!
