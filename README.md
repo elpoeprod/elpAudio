@@ -7,8 +7,8 @@ You need to install game maker 8.2.7z file in that repository.
 Then download all of the files in the repository and click on "elpAudio.gm81". Done! Now you can do anything.
 
 ## Second way
-<a href="https://discord.gg/CMZKMS4NHM">Game Maker 8.2</a> with GM8.2 Core and Network extensions (they will be installed with the GM8.2).
-To install Game Maker 8.2 go to #roadmap text-channel on GM8.2 discord server
+You need to install <a href="https://discord.gg/CMZKMS4NHM">Game Maker 8.2</a> with GM8.2 Core and Network extensions (they will be installed with the GM8.2).
+To install Game Maker 8.2 go to #roadmap text-channel on GM8.2 discord server.
 Then download all of the files in the repository and click on "elpAudio.gm81". Done! Now you can do anything.
 
 # HOW TO USE:
