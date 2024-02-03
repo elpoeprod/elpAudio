@@ -3,7 +3,7 @@ elpAudio - simple audio player using FMOD
 
 To open source code of elpAudio you need:
 ## First way
-You need to install game maker 8.2.7z file in that repository
+You need to install game maker 8.2.7z file in that repository.
 Then download all of the files in the repository and click on "elpAudio.gm81". Done! Now you can do anything.
 
 ## Second way
