@@ -4,7 +4,7 @@ elpAudio - simple audio player using FMOD
 **Now elpAudio have its own discord server - you can <a href="https://discord.gg/n64mcGT6Sr">click here</a> to join it!**
 
 # HOW TO USE:
--go to releases and download latest version of elpAudio and open the elpAudio.exe. Enjoy!
+-go to releases, download latest version of elpAudio and open the elpAudio.exe. Enjoy!
 
 ## To open source code of elpAudio you need:
 ### First way
