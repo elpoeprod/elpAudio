@@ -1,6 +1,7 @@
 if !variable_global_exists('list') global.list=ds_list_create()
 else ds_list_clear(global.list)
 
+room_caption='elpAudio '+get_version()
 global.play=0
 global.paused=0
 global.stopped=0
@@ -30,4 +31,5 @@ ini_close()
 }
 if file_exists('temp.elf') loadlist('temp.elf',0)
 else get_music_from('music_examples\')
+
 get_theme(global.themepath)

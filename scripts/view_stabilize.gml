@@ -1,4 +1,4 @@
-view_wview[0]=global.plrwidth//+current_time//(current_time-10000)
+view_wview[0]=global.plrwidth
 view_hview[0]=global.plrheight
 view_wport[0]=global.plrwidth
 view_hport[0]=global.plrheight

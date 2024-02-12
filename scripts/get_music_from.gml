@@ -1,7 +1,3 @@
-global.play=0
-global.current=0
-global.songlength=0
-global.pos=0
 var mydir,i,findfile,txt;
 txt=''
 mydir=argument0

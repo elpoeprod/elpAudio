@@ -150,6 +150,7 @@
 	|file_is_tracker
 	|tracker_get_name
 	|get_version
+	|is_stereo_sound
 +new_list_outdated
 	|new_list_create
 	|new_list_find
