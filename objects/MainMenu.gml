@@ -6,56 +6,43 @@ applies_to=self
 */
 //if !variable_global_exists('list') global.list=ds_list_create()
 
+did=0
+fade=1
+stri=0
+alarm[0]=__speed
+
+
 if variable_global_exists('__init') {
 if global.__init=1 {
 LoadFMOD()
 FMODinit(100,1)
-
-//settings_load()
-global.current=0
-room_caption='elpAudio '+get_version()
-global.play=0
-global.paused=0
-global.stopped=0
-global.trackname=''
-did=0
-fade=1
-stri=0
-globalvar __enablefloat,__stopsongafter,__speed,__visualiser;
-__enablefloat=0
-__stopsongafter=0
-__visualiser=0
-__speed=15 // Default is 15
-alarm[0]=__speed
-//window_set_color(c_gray)
 }
 } else {
 LoadFMOD()
 FMODinit(100,1)
+global.__init=0
 
 global.current=0
 room_caption='elpAudio '+get_version()
 global.play=0
+global.songlength=0
+global.pos=0
 global.paused=0
 global.stopped=0
 global.trackname=''
-did=0
-fade=1
-stri=0
-alarm[0]=__speed
-global.__init=0
+global.playing=-1
+global.themepath='themes\default\theme.ini'
+global.current=0
+global.thesong=''
 }
+
 randomize()
 
-
-if parameter_string(1)='' nothing=1 else {
-if global.play=0 or global.stopped=1 mus_play(string(parameter_string(1)))
-}
-
+if parameter_count()>0 mus_play(parameter_string(1))
 
 window_set_chromakey(1,hex_to_col($014426))
 message_position(window_get_x(),window_get_y()+window_get_height())
-message_size(view_wview[0],view_hview[0])
+message_size(clamp(view_wview[0],400,900),clamp(view_hview[0],200,900))
 global.changeview=1
 
 pressed=0
