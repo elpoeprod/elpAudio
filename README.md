@@ -1,10 +1,10 @@
 # elpAudio
-elpAudio - simple audio player using FMOD
+elpAudio - simple audio player using FMOD, that supports custom themes, music files (`.mp3, .wav, .ogg, .flac, .opus`) and tracker music (`.mod, .xm, .s3m, .it`).
 
 **Now elpAudio have its own discord server - you can <a href="https://discord.gg/n64mcGT6Sr">click here</a> to join it!**
 
 # HOW TO USE:
--go to releases, download latest version of elpAudio and open the elpAudio.exe. Enjoy!
+-go to releases, download latest version of elpAudio and open the elpAudio.exe. Enjoy the "new **WinAmp**"!
 
 ## To open source code of elpAudio you need:
 ### First way
