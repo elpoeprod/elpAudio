@@ -153,8 +153,8 @@ mx=mouse_x
 my=mouse_y
 hh=1
 }
-window_set_position(display_mouse_get_x()-mx-x,
-display_mouse_get_y()-my-y
+window_set_position(display_mouse_get_x()-mx,
+display_mouse_get_y()-my
 )
 pressed=1
 } else {pressed=0 hh=0}
