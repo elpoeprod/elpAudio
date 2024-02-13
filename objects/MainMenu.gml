@@ -8,6 +8,7 @@ applies_to=self
 
 did=0
 fade=1
+hh=0
 stri=0
 alarm[0]=10
 alarm[1]=10
@@ -147,11 +148,16 @@ window_get_x()+x+w-w/6,window_get_y()+y+h+100*pressed
 )
 {
 if mouse_check_button(mb_left) {
-window_set_position(display_mouse_get_x()-w/2-x,
-display_mouse_get_y()-h/2-y
+if hh=0 {
+mx=mouse_x
+my=mouse_y
+hh=1
+}
+window_set_position(display_mouse_get_x()-mx-x,
+display_mouse_get_y()-my-y
 )
 pressed=1
-} else pressed=0
+} else {pressed=0 hh=0}
 }
 #define KeyPress_1
 /*"/*'/**//* YYD ACTION
