@@ -151,6 +151,8 @@
 	|tracker_get_name
 	|get_version
 	|is_stereo_sound
+	|is_negative
+	|filename_ext_new
 +new_list_outdated
 	|new_list_create
 	|new_list_find
@@ -160,5 +162,4 @@
 	|new_list_sort
 	|new_list_size
 	|new_list_shuffle
-|is_negative
-|filename_ext_new
+|string_ext
