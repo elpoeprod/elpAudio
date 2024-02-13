@@ -9,8 +9,8 @@ applies_to=self
 did=0
 fade=1
 stri=0
-alarm[0]=__speed
-
+alarm[0]=10
+alarm[1]=10
 
 if variable_global_exists('__init') {
 if global.__init=1 {
@@ -34,11 +34,11 @@ global.playing=-1
 global.themepath='themes\default\theme.ini'
 global.current=0
 global.thesong=''
+global.played_from_arg=0
+
 }
 
 randomize()
-
-if parameter_count()>0 mus_play(parameter_string(1))
 
 window_set_chromakey(1,hex_to_col($014426))
 message_position(window_get_x(),window_get_y()+window_get_height())
@@ -52,17 +52,15 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/*if __enablefloat {
-if global.play {
-mystr=id3_get_title(string(ds_list_find_value(global.list,global.current)))+" - "+id3_get_artist(string(ds_list_find_value(global.list,global.current)))
-str=string_copy(mystr,1+stri,24)
-stri+=1
-if stri>string_length(mystr) {stri=0 str='          '+string_copy(mystr,1+stri,24) }
-room_caption=str+'      - elpAudio '+get_version()
-}
-}
-
-alarm[0]=__speed
+if parameter_count()>0 and global.played_from_arg==0 {mus_play(parameter_string(1)) global.played_from_arg=1}
+#define Alarm_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+message_position(window_get_x(),window_get_y()+window_get_height())
+alarm[1]=15
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -71,7 +69,7 @@ applies_to=self
 */
 if !__enablefloat {
 if global.play=0 room_caption='elpAudio '+get_version() else {
-if file_is_tracker(string(ds_list_find_value(global.list,global.current)))
+if file_is_tracker(global.thesong)
 room_caption='elpAudio '+get_version()+' - PLAYING ('+string(global.current+1)+'/'+string(ds_list_size(global.list))+')'
 else room_caption='['+current_time_format(FMODInstanceGetPosition(global.playing)*global.songlength)+' / '+current_time_format(global.songlength)+'] elpAudio '+get_version()+' - PLAYING ('+string(global.current+1)+'/'+string(ds_list_size(global.list))+')'
 }
@@ -180,6 +178,7 @@ MainMenu.stri=0
 visualname.stri=0
 mus_play(ds_list_find_value(global.list,global.current))
 }
+draw_set_color(c_white)
 if keyboard_check_pressed(vk_f1) {
-show_message(global.trackname+"#"+string(FMODInstanceSoundGetLength(global.playing))+"#"+string(visualname.xx)+"#"+string(visualname.stri))
+show_message(string_ext("Now playing: {0}#Song length:{1}#Frequency:{2}",global.trackname,current_time_format(FMODSoundGetLength(global.musicsound)),string(FMODInstanceGetFrequency(global.playing)/1000)+"KHz"))
 }

@@ -11,7 +11,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if opt>-1 on=!on
+/*if opt>-1 on=!on
 image_index=on
 if opt=-1 {
 if __speed>5 __speed-=5 else __speed=60

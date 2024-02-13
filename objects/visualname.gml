@@ -81,7 +81,7 @@ draw_set_halign(fa_left)
 
 if global.oldfloat==0 and global.play {
 if instance_exists(visualiser) visualiser.depth=depth-1
-str=ds_list_find_value(global.list,global.current)
+str=global.thesong//ds_list_find_value(global.list,global.current)
 
 if floatdrawtime1 { // Draw with time
 if file_is_tracker(str) mystr=global.trackname
