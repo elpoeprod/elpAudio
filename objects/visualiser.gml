@@ -42,10 +42,20 @@ x=global.visualx
 y=global.visualy
 width=global.visualw
 height=global.visualh
+
 draw_set_color(global.visbgcol)
 draw_set_alpha(1)
+
+if usebgvisimg==0 {
 draw_rectangle(x,y,x+width,y+height,0)
+} else {
+if sprite_exists(visbgimg) and visbgimg>-1 {
+draw_sprite_stretched_ext(visbgimg,0,x+visbgx,y+visbgy,visbgw,visbgh,c_white,1)
+}
+}
+
 draw_set_color(c_white)
+
 if !surface_exists(surf1) {
 surf1=surface_create(width,height)
 }

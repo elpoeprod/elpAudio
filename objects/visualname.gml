@@ -30,7 +30,7 @@ mystr=string_copy(drawstr,1+stri,30)//floor(oldfloatw/(string_width('a')-2)))
 stri+=1
 if stri>string_length(drawstr)/2 stri=0
 }
-alarm[0]=__speed
+alarm[0]=(15/__speed)*20
 
 /*
 if global.play {
@@ -59,7 +59,8 @@ surface_set_target(oldsurf)
 draw_clear_alpha(0,0)
 draw_set_color(global.floatcolor)
 draw_set_halign(fa_left)
-draw_text(0,6,mystr)
+
+if global.oldfloat draw_text(0,6,mystr)
 surface_reset_target()
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -78,9 +79,8 @@ draw_rectangle(x,y,x+width,y+height,0)
 }*/
 draw_set_color(global.floatcolor)
 draw_set_halign(fa_left)
-
 if global.oldfloat==0 and global.play {
-if instance_exists(visualiser) visualiser.depth=depth-1
+if instance_exists(visualiser) and ontop==0 visualiser.depth=depth-1
 str=global.thesong//ds_list_find_value(global.list,global.current)
 
 if floatdrawtime1 { // Draw with time
@@ -93,10 +93,12 @@ mystr=global.trackname
 
 if floatiertext {if textx+string_width(mystr)>width xx-=__speed/15}
 if xx<-string_width(mystr)-textx xx=width+10
-
+//draw_text(x+xx,y+6,mystr)
 }
+
 if global.oldfloat==0 draw_text(x+textx+xx,y+texty+6,mystr)
-else draw_surface_ext(oldsurf,textx,texty,1,1,0,c_white,1)
+else
+draw_surface_ext(oldsurf,textx,texty,1,1,0,c_white,1)
 
 if drawfloattime2 {
 draw_set_font(time2font)

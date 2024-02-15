@@ -77,6 +77,31 @@ else room_caption='['+current_time_format(FMODInstanceGetPosition(global.playing
 }
 if window_get_taskbar_caption()!=room_caption
 window_set_taskbar_caption(room_caption)
+#define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+if point_in_rectangle(
+display_mouse_get_x(),display_mouse_get_y(),
+window_get_x()+x-1000*pressed,window_get_y()+y-1000*pressed
+,
+window_get_x()+x+w-w/6+1000*pressed,window_get_y()+y+h+1000*pressed
+)
+{
+if mouse_check_button(mb_left) {
+if hh=0 {
+mx=mouse_x
+my=mouse_y
+hh=1
+}
+window_set_position(display_mouse_get_x()-mx,
+display_mouse_get_y()-my
+)
+pressed=1
+} else {pressed=0 hh=0}
+}
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -140,25 +165,6 @@ draw_set_color(global.captioncol)
 draw_set_font(global.__fon_cap)
 if drawcaption draw_text(x+4,y,room_caption)
 draw_set_color(c_white)
-if point_in_rectangle(
-display_mouse_get_x(),display_mouse_get_y(),
-window_get_x()+x,window_get_y()+y-100*pressed
-,
-window_get_x()+x+w-w/6,window_get_y()+y+h+100*pressed
-)
-{
-if mouse_check_button(mb_left) {
-if hh=0 {
-mx=mouse_x
-my=mouse_y
-hh=1
-}
-window_set_position(display_mouse_get_x()-mx,
-display_mouse_get_y()-my
-)
-pressed=1
-} else {pressed=0 hh=0}
-}
 #define KeyPress_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
