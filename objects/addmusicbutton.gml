@@ -55,7 +55,7 @@ addy=60
 if draw=1 {
 select=show_menu('Add file|Add folder|Add URL|Clear playlist',-1)
 if select=0 {
-file=get_open_filename('All files|*.*','')
+file=get_open_filename('All supported files|*.mp3;*.ogg;*.wav;*.m4v;*.mp3;*.opus;*.mp2;*.3gp;*.mod;*.xm;*.etm;*.stm;*.s3m;*.it;*.mus;*.wasd;*.flac','')
 if file='' nothing=1 else ds_list_add(global.list,file)
 }
 if select=1 {

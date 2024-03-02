@@ -84,8 +84,9 @@ if instance_exists(visualiser) and ontop==0 visualiser.depth=depth-1
 str=global.thesong//ds_list_find_value(global.list,global.current)
 
 if floatdrawtime1 { // Draw with time
-if file_is_tracker(str) mystr=global.trackname
-else mystr=global.trackname+' ('+current_time_format2(global.songlength)+')'
+//if file_is_tracker(str) mystr=global.trackname
+//else
+mystr=global.trackname+' ('+current_time_format2(global.songlength)+')'
 }
 else { // Draw without the time
 mystr=global.trackname
@@ -106,8 +107,9 @@ draw_set_color(floattime2col1)
 draw_text(x+time2x,y+time2y,"88:88")
 draw_set_color(floattime2col2)
 if global.play {
-if file_is_tracker(global.thesong) draw_text(x+time2x,y+time2y,"00:00")
-else draw_text(x+time2x,y+time2y,current_time_format2(global.songlength*FMODInstanceGetPosition(global.playing)))
+//if file_is_tracker(global.thesong) draw_text(x+time2x,y+time2y,"00:00")
+//else
+draw_text(x+time2x,y+time2y,current_time_format2(sound_get_pos(global.playing)*global.songlength))
 } else {draw_text(x+time2x,y+time2y,"00:00")}
 }
 

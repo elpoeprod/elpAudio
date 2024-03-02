@@ -15,12 +15,12 @@ alarm[1]=10
 
 if variable_global_exists('__init') {
 if global.__init=1 {
-LoadFMOD()
-FMODinit(100,1)
+//LoadFMOD()
+//FMODinit(100,1)
 }
 } else {
-LoadFMOD()
-FMODinit(100,1)
+//LoadFMOD()
+//FMODinit(100,1)
 global.__init=0
 
 global.current=0
@@ -72,7 +72,7 @@ if !__enablefloat {
 if global.play=0 room_caption='elpAudio '+get_version() else {
 if file_is_tracker(global.thesong)
 room_caption='elpAudio '+get_version()+' - PLAYING ('+string(global.current+1)+'/'+string(ds_list_size(global.list))+')'
-else room_caption='['+current_time_format(FMODInstanceGetPosition(global.playing)*global.songlength)+' / '+current_time_format(global.songlength)+'] elpAudio '+get_version()+' - PLAYING ('+string(global.current+1)+'/'+string(ds_list_size(global.list))+')'
+else room_caption='['+current_time_format(sound_get_pos(global.playing)*global.songlength)+' / '+current_time_format(global.songlength)+'] elpAudio '+get_version()+' - PLAYING ('+string(global.current+1)+'/'+string(ds_list_size(global.list))+')'
 }
 }
 if window_get_taskbar_caption()!=room_caption
@@ -129,7 +129,7 @@ applies_to=self
 */
 if keyboard_check_pressed(vk_f4) {
 if global.play mus_stop()
-FMODfree()
+//FMODfree()
 settings_save()
 game_end()
 }
@@ -143,7 +143,7 @@ applies_to=self
 
 view_stabilize()
 if global.play {
-if FMODInstanceIsPlaying(global.playing)=0 or FMODInstanceGetPosition(global.playing)=0.999 {
+if sound_isplaying(global.playing)=0 or sound_get_pos(global.playing)>=0.999 {
 if __stopsongafter mus_stop() else {
 if global.current<ds_list_size(global.list)-1 global.current+=1 else global.current=0
 if global.play mus_stop()

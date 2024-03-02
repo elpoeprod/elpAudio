@@ -30,9 +30,9 @@ applies_to=self
 */
 slw=sprite_get_width(global.__ico_slide)
 
-if global.play {if !file_is_tracker(global.thesong) {
-global.pos=(FMODInstanceGetPosition(global.playing)*(sprite_width))
-} else global.pos=sprite_width/100
+if global.play {//if !file_is_tracker(global.thesong) {
+global.pos=(sound_get_pos(global.playing)*(sprite_width))
+//} else global.pos=sprite_width/100
 }
 draw_self()
 if point_in_rectangle(mouse_x,mouse_y,x,y,x+sprite_width,y+sprite_height) {
@@ -47,12 +47,12 @@ draw_sprite_ext(global.__ico_slide,0,myx,y+sprite_height/2,1,1,0,__butslidercol,
 
 if
 point_in_rectangle(mouse_x,mouse_y,x,y,x+sprite_width,y+sprite_height)
-and !file_is_tracker(global.thesong)
+//and !file_is_tracker(global.thesong)
 and global.play
 {
 mypos=clamp(mouse_x-x,0,sprite_width)//-slw/2
 if mouse_check_button_released(mb_left) {
-FMODInstanceSetPosition(global.playing,(mypos)/(sprite_width))
+sound_set_pos(global.playing,(mypos)/(sprite_width))
 }
 mx1=4
 mx2=100
