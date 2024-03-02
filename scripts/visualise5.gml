@@ -1,5 +1,5 @@
 var wavel,waver,specl,specr,maxs,maxw;
-maxs = 128;
+maxs = __visual_freq;
 maxw=256;
 var i,xx,yy,w,h;
 w = argument3;

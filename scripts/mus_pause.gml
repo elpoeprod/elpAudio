@@ -1,2 +1,2 @@
-FMODInstanceSetPaused(global.playing,true)
+sound_pause(global.playing)
 global.paused=1

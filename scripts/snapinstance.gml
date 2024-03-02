@@ -4,7 +4,7 @@
 
 //New more precise but slower fetchin using Snapshot2
 var wavel,waver,specl,specr,maxs,maxw;
-maxs =128// 256;
+maxs =__visual_freq// 256;
 maxw=256;
 var i,xx,yy,w,h;
 w = argument3;

@@ -8,4 +8,4 @@ if string_ends_with(string_lower(global.thesong),'.s3m') {xm_load(global.thesong
 return real(real_hex(s3mlen))*1000*((xmpatterns-1))}
 end
 else*/
-return(FMODSoundGetLength(argument0))
+return(sound_get_length(argument0))

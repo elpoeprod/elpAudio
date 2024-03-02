@@ -1,116 +1,9 @@
+|get_version
 +EXT
-	+GMFMODSimple
-		|HowToUse
-		|KnownQuestions
-		|LoadFMOD
-		|UnloadFMOD
-		|FMODfree
-		|FMODinit
-		|FMODUpdate
-		|FMODSoundAdd
-		|FMODSoundFree
-		|FMODSoundSetGroup
-		|FMODSoundSetMaxVolume
-		|FMODSoundGetMaxVolume
-		|FMODSoundGetMaxDist
-		|FMODSoundSetEffects
-		|FMODSoundAddEffect
-		|FMODSoundSet3dMinMaxDistance
-		|FMODSoundSet3dDopplerMax
-		|FMODSoundSet3dCone
-		|FMODSoundGetNumChannels
-		|FMODSoundGetLength
-		|FMODInstanceSoundGetLength
-		|FMODSoundPlay
-		|FMODSoundLoop
-		|FMODSoundPlay3d
-		|FMODSoundLoop3d
-		|FMODInstanceStop
-		|FMODInstanceGetSound
-		|FMODInstanceIsPlaying
-		|FMODInstanceSetVolume
-		|FMODInstanceGetVolume
-		|FMODInstanceSetFrequency
-		|FMODInstanceGetFrequency
-		|FMODInstanceSetMuted
-		|FMODInstanceGetMuted
-		|FMODInstanceSetPaused
-		|FMODInstanceGetPaused
-		|FMODInstanceSetPosition
-		|FMODInstanceGetPosition
-		|FMODInstanceSetPan
-		|FMODInstanceGetPan
-		|FMODInstanceSetLoopCount
-		|FMODInstanceGetLoopCount
-		|FMODInstanceSet3dConeOrientation
-		|FMODInstanceSet3dPosition
-		|FMODInstanceFadeVolume
-		|FMODInstanceFadeFrequency
-		|FMODInstanceFadePan
-		|FMODInstanceSet3dMinMaxDistance
-		|FMODInstanceSet3dDopplerMax
-		|FMODInstanceSet3dCone
-		|FMODInstanceGetMaxDist
-		|FMODInstanceGetWaveSnapshot
-		|FMODInstanceGetSpectrumSnapshot
-		|FMODInstanceGetWaveSnapshot2
-		|FMODInstanceGetSpectrumSnapshot2
-		|FMODAllStop
-		|FMODGroupStop
-		|FMODMasterSetVolume
-		|FMODGroupSetVolume
-		|FMODGroupGetVolume
-		|FMODGroupSetPitch
-		|FMODGroupGetPitch
-		|FMODGroupSetPaused
-		|FMODGroupGetPaused
-		|FMODGroupSetMuted
-		|FMODGroupGetMuted
-		|FMODGroupSetFrequency
-		|FMODGroupSetPan
-		|FMODGroupFadeVolume
-		|FMODGroupFadePitch
-		|FMODGroupFadePan
-		|FMODGroupGetWaveSnapshot
-		|FMODGroupGetSpectrumSnapshot
-		|FMODGroupGetWaveSnapshot2
-		|FMODGroupGetSpectrumSnapshot2
-		|FMODListenerSetNumber
-		|FMODListenerSet3dPosition
-		|FMODListenerSet3dPositionEx
-		|FMODListenerHearsDistanceOnly
-		|FMODSetDopplerFPS
-		|FMODSetWorldScale
-		|FMODSetPassword
-		|FMODBlockersInit
-		|FMODBlockersFree
-		|FMODBlockersAddGMObjects
-		|FMODBlockerAdd
-		|FMODBlockerSet3dPosition
-		|FMODBlockerSet3dOrientation
-		|FMODBlockerSet3dScale
-		|FMODBlockerSetEnabled
-		|FMODBlockerGetEnabled
-		|FMODBlockerGetStrength
-		|FMODBlockerSetStrength
-		|FMODGetNumInstances
-		|FMODSoundIsStreamed
-		|FMODSoundInstanciate
-		|FMODSoundIs3d
-		|FMODErrorStr
-		|FMODGetLastError
-		|FMODNormalizeWaveData
-		|FMODNormalizeSpectrumData
-		|FMODGetSnapshotEntry
-		|FMODGetSpectrumBuffer
-		|FMODGetWaveBuffer
-		|FMODEncryptFile
 	|draw_textblur
 	|view_stabilize
 	|id3_get_all
-	|ngame_end
 	|merge_color_normal
-	|get_song_length
 	|xm_load
 	|mod_load
 	|s3m_load
@@ -123,6 +16,8 @@
 	|visualise3
 	|visualise4
 	|visualise5
+	+new_scripts
+		|sound_get_snapshot_entry
 +GUI
 	|get_theme
 	|load_gui
@@ -133,6 +28,7 @@
 	|hex_to_col
 	|savelist
 	|loadlist
+	|ngame_end
 +SAFEINI
 	|sini_open
 	|sini_read_string
@@ -149,10 +45,10 @@
 	|random_range_notme
 	|file_is_tracker
 	|tracker_get_name
-	|get_version
 	|is_stereo_sound
 	|is_negative
 	|filename_ext_new
+	|get_song_length
 +new_list_outdated
 	|new_list_create
 	|new_list_find
@@ -163,3 +59,5 @@
 	|new_list_size
 	|new_list_shuffle
 |string_ext
+|is_supported
+|LINUX_FIX
