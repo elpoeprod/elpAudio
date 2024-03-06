@@ -16,7 +16,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if variable_global_exists('musicsound') myinst=global.musicsound
+if global.play myinst=global.playing
 else myinst=noone
 if !surface_exists(surf1) {
 surf1=surface_create(width,height)
@@ -72,11 +72,8 @@ switch (__visualiser) {
     case 2: visualise3(myinst,x,y,width,height);break;
     case 3: visualise4(myinst,x,y,width,height);break;
     case 4: visualise5(myinst,x,y,width,height);break;
-    if global.customvisuals>0 {
-    repeat(global.customvisuals) {
-    case hhh: execute_string(vis[hhh-5]); show_message(vis[hhh-5]); break;
-    }
-    }
+//    case 5: visualise6(x,y);break;
+    default: break;
     }
 }
 if usefgvisimg {

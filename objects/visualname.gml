@@ -109,7 +109,7 @@ draw_set_color(floattime2col2)
 if global.play {
 //if file_is_tracker(global.thesong) draw_text(x+time2x,y+time2y,"00:00")
 //else
-draw_text(x+time2x,y+time2y,current_time_format2(sound_get_pos(global.playing)*global.songlength))
+draw_text(x+time2x,y+time2y,current_time_format2(FMODInstanceGetPosition(global.playing)*global.songlength))
 } else {draw_text(x+time2x,y+time2y,"00:00")}
 }
 

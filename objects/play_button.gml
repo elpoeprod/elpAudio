@@ -25,8 +25,9 @@ applies_to=self
 */
 image_index=0
 enter=0
-if global.paused {mus_unpause() exit}
-if global.play=0 or global.stopped=1 mus_play(string(ds_list_find_value(global.list,global.current)))
+if ds_list_size(global.list)<1 exit
+if global.paused or global.stopped {mus_unpause() exit}
+if(global.play=0 or global.stopped=1) mus_play(string(ds_list_find_value(global.list,global.current)))
 #define Mouse_10
 /*"/*'/**//* YYD ACTION
 lib_id=1

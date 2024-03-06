@@ -53,23 +53,27 @@ maxx=max(string_width(button[0]),string_width(button[1]),string_width(button[2])
 addy=60
 
 if draw=1 {
-select=show_menu('Add file|Add folder|Add URL|Clear playlist',-1)
+select=show_menu('Add file|Add folder|Add URL|Show files|Clear playlist',-1)
 if select=0 {
 file=get_open_filename('All supported files|*.mp3;*.ogg;*.wav;*.m4v;*.mp3;*.opus;*.mp2;*.3gp;*.mod;*.xm;*.etm;*.stm;*.s3m;*.it;*.mus;*.wasd;*.flac','')
 if file='' nothing=1 else ds_list_add(global.list,file)
 }
 if select=1 {
-folder=get_directory_alt('Add folder to your playlist','')
+folder=get_directory_alt('Add folder to your playlist!','')
+//show_message(folder)
 if folder='' nothing=1 else {
 get_music_from(folder+'\')
 }
 }
 if select=2 {
-myurl=get_string('Type in the URL to add music from','https://soundcloud.com/gbsr/')
+myurl=get_string('Type in the URL to add music from','https://elpoepgames.site/elp-audio/music/welcome.mp3')
 if myurl='' nothing=1 else ds_list_add(global.list,myurl)
 }
 if select=3 {
-if showagain result=show_message_ext('Are you really want to clear playlist?#(Recommending to save playlist before clear)','YES','do not show again','Cancel')
+execute_program_silent('explorer.exe /select,"'+global.dirr+'"')
+}
+if select=4 {
+if showagain result=show_message_ext('Are you really want to clear playlist?#(Recommending to save playlist before clear)','YES','DoNotShowAgain','Cancel')
 else result=1
 if result=1 {
 ds_list_clear(global.list)

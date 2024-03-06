@@ -21,13 +21,15 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if global.current<ds_list_size(global.list)-1 global.current+=1 else global.current=0
-if global.play mus_stop()
 MainMenu.stri=0
+visualname.alarm[0]=1
 visualname.stri=0
 visualname.xx=0
 image_index=0
 enter=0
+if ds_list_size(global.list)<1 exit
+if global.current<ds_list_size(global.list)-1 global.current+=1 else global.current=0
+if global.play mus_stop()
 mus_play(ds_list_find_value(global.list,global.current))
 #define Mouse_10
 /*"/*'/**//* YYD ACTION

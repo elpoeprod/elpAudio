@@ -15,12 +15,12 @@ alarm[1]=10
 
 if variable_global_exists('__init') {
 if global.__init=1 {
-//LoadFMOD()
-//FMODinit(100,1)
+LoadFMOD()
+FMODinit(100,1)
 }
 } else {
-//LoadFMOD()
-//FMODinit(100,1)
+LoadFMOD()
+FMODinit(100,1)
 global.__init=0
 
 global.current=0
@@ -53,7 +53,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if parameter_count()>0 and global.played_from_arg==0 {mus_play(parameter_string(1)) global.played_from_arg=1}
+if parameter_count()>0 and global.played_from_arg==0 {mus_play(parameter_string(1)) ds_list_add(global.list,parameter_string(1)) global.played_from_arg=1}
 #define Alarm_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -68,11 +68,13 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+///CAPTION
 if !__enablefloat {
 if global.play=0 room_caption='elpAudio '+get_version() else {
-if file_is_tracker(global.thesong)
-room_caption='elpAudio '+get_version()+' - PLAYING ('+string(global.current+1)+'/'+string(ds_list_size(global.list))+')'
-else room_caption='['+current_time_format(sound_get_pos(global.playing)*global.songlength)+' / '+current_time_format(global.songlength)+'] elpAudio '+get_version()+' - PLAYING ('+string(global.current+1)+'/'+string(ds_list_size(global.list))+')'
+//if file_is_tracker(global.thesong)
+//room_caption='elpAudio '+get_version()+' - PLAYING ('+string(global.current+1)+'/'+string(ds_list_size(global.list))+')'
+//else
+room_caption='['+current_time_format(FMODInstanceGetPosition(global.playing)*global.songlength)+' / '+current_time_format(global.songlength)+'] elpAudio '+get_version()+' - PLAYING ('+string(global.current+1)+'/'+string(ds_list_size(global.list))+')'
 }
 }
 if window_get_taskbar_caption()!=room_caption
@@ -83,6 +85,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+///MOUSE GRABBING WINDOW
 if point_in_rectangle(
 display_mouse_get_x(),display_mouse_get_y(),
 window_get_x()+x-1000*pressed,window_get_y()+y-1000*pressed
@@ -101,6 +104,15 @@ display_mouse_get_y()-my
 )
 pressed=1
 } else {pressed=0 hh=0}
+}
+
+if __stick_to_edges {
+///WINDOW STICKS TO EDGES
+if window_get_x()<16 window_set_position(0,window_get_y())
+if window_get_x()+window_get_width()>display_get_width()-16 window_set_position(display_get_width()-window_get_width(),window_get_y())
+
+if window_get_y()<16 window_set_position(window_get_x(),0)
+if window_get_y()+window_get_height()>display_get_height()-16 window_set_position(window_get_x(),display_get_height()-window_get_height())
 }
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -143,7 +155,7 @@ applies_to=self
 
 view_stabilize()
 if global.play {
-if sound_isplaying(global.playing)=0 or sound_get_pos(global.playing)>=0.999 {
+if FMODInstanceGetPosition(global.playing)>=0.999 {
 if __stopsongafter mus_stop() else {
 if global.current<ds_list_size(global.list)-1 global.current+=1 else global.current=0
 if global.play mus_stop()
@@ -192,5 +204,5 @@ mus_play(ds_list_find_value(global.list,global.current))
 }
 draw_set_color(c_white)
 if keyboard_check_pressed(vk_f1) {
-show_message(string_ext("Now playing: {0}#Song length:{1}#Frequency:{2}",global.trackname,current_time_format(FMODSoundGetLength(global.musicsound)),string(FMODInstanceGetFrequency(global.playing)/1000)+"KHz"))
+show_message(string_ext("Now playing: {0}#Song length:{1}#Frequency:{2}#Song number:{3}/{4}#",global.trackname,current_time_format(FMODSoundGetLength(global.musicsound)),string(FMODInstanceGetFrequency(global.playing)/1000)+"KHz",global.current+1,ds_list_size(global.list)))
 }

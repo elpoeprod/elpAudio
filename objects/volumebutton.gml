@@ -34,7 +34,7 @@ x-can*100,y-can*100,x+sprite_width+can*100,y+sprite_height+can*100)
 {
 if mouse_check_button(mb_left) {
 global.volume=clamp(mouse_x-x,0,sprite_width)*(100/sprite_width)
-sound_global_volume((global.volume)/100)
+FMODMasterSetVolume((global.volume)/100)
 } else can=0
 }
 

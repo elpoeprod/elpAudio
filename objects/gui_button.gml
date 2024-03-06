@@ -26,7 +26,7 @@ full=!full
 }
 if button=2 {
 if global.play mus_stop()
-//FMODfree()
+FMODfree()
 settings_save()
 ngame_end()
 }

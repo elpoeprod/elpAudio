@@ -23,6 +23,7 @@ applies_to=self
 */
 image_index=0
 enter=0
+if ds_list_size(global.list)<1 exit
 if global.play mus_pause()
 #define Mouse_10
 /*"/*'/**//* YYD ACTION

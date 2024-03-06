@@ -26,6 +26,7 @@ enter=0
 MainMenu.stri=0
 visualname.stri=0
 visualname.xx=0
+if ds_list_size(global.list)<1 exit
 if global.play mus_stop()
 global.current=random_range_notme(global.current,0,ds_list_size(global.list)-1)
 mus_play(string(ds_list_find_value(global.list,global.current)))

@@ -31,7 +31,7 @@ applies_to=self
 slw=sprite_get_width(global.__ico_slide)
 
 if global.play {//if !file_is_tracker(global.thesong) {
-global.pos=(sound_get_pos(global.playing)*(sprite_width))
+global.pos=(FMODInstanceGetPosition(global.playing)*(sprite_width))
 //} else global.pos=sprite_width/100
 }
 draw_self()
@@ -52,7 +52,7 @@ and global.play
 {
 mypos=clamp(mouse_x-x,0,sprite_width)//-slw/2
 if mouse_check_button_released(mb_left) {
-sound_set_pos(global.playing,(mypos)/(sprite_width))
+FMODInstanceSetPosition(global.playing,(mypos)/(sprite_width))
 }
 mx1=4
 mx2=100
