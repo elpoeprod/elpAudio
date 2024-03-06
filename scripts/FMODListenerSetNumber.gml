@@ -1,7 +1,7 @@
 //export double FMODListenerSetNumber(double number)
 
 //Use this to set the number of listener in the game room
-//A listenner is usally a player... Player 2 can be another listener
+//A listener is usally a player... Player 2 can be another listener
 // A listener can also be a "game microphone" in the room, hearing
 // the sounds in the room and playing them on the speaker.
 

@@ -3,7 +3,7 @@
 //the extended version of FMODListenerSet3dPosition so you can do your 3d FPS setup
 
 //Sets the litenner position in the room
-//number is the listenner id (1 to 4) to position
+//number is the listener id (1 to 4) to position
 //x,y,z are to world relative positions
 //fx,fy,fz are the foreward directions in vectors
 //ux,uy,uz are the up direction in vertors

@@ -70,7 +70,7 @@ myurl=get_string('Type in the URL to add music from','https://elpoepgames.site/e
 if myurl='' nothing=1 else ds_list_add(global.list,myurl)
 }
 if select=3 {
-execute_program_silent('explorer.exe /select,"'+global.dirr+'"')
+execute_program_silent('explorer.exe /root,"'+global.dirr+'"')
 }
 if select=4 {
 if showagain result=show_message_ext('Are you really want to clear playlist?#(Recommending to save playlist before clear)','YES','DoNotShowAgain','Cancel')

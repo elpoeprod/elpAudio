@@ -8,7 +8,7 @@
 //group is the sound group 0-4
 //Channel is the sound channel (FMODSoundGetNumChannels to figure how many channels you need to fetch)
 //It's usually good enough to get channel 0 (for mono sounds or left channel for stereo sounds) 1 is right, 2 and higher are the other channels if any
-//size is the size of the buffer... keep it 2^n 32,64,128.... 1024 (max)
+//size is the size of the buffer... keep it 2^n 64,128.... Min = 64. Max = 8192
 
 //Gets the spectrum snapshot into a string buffer
 //If you need to average left and right channels create a more accurate display of both channels in one screen 

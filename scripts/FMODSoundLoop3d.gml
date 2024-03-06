@@ -1,6 +1,6 @@
 //export double FMODSoundLoop3d(double sound, double x, double y, double z, double paused)
 
-//Plays (Loops) a sound relative to the player or listenner position
+//Plays (Loops) a sound relative to the player or listener position
 
 //returns 0 on error
 //retuns a sound instance on success
@@ -24,5 +24,5 @@
 
 var t;
 t =  external_call(global.dll_FMODSoundLoop3d,argument0,argument1,argument2,argument3,argument4);
-FMODUpdate();
+//FMODUpdate();
 return t;

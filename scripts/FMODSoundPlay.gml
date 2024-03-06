@@ -18,5 +18,5 @@
 //when the sound is done playing
 var t;
 t =  external_call(global.dll_FMODSoundPlay,argument0,argument1);
-FMODUpdate();
+//FMODUpdate();
 return t;

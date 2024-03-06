@@ -6,7 +6,11 @@
 //returns 0 on error
 
 //threed (optional false is default) specifies to load the file as 3d enabled
-//stream (optional false is default) specifies the system to load the file a chunk at a time to play it
+
+//stream (optional 0 is default):
+//0 -> Preloads all the decompressed audio into memory before playing (RAM intensive)
+//1 -> Streams from disk (Disk intensive)
+//2 -> Preloads the compressed audio into memory before playing, then streams from memory
 
 // specify threed as true if the sound will be 3d enabled
 // You cannot mix 3d functions with non 3d sounds

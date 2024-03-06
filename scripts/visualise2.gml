@@ -8,20 +8,23 @@ xx = argument1;
 yy = argument2//+h
 //draw_set_blend_mode(bm_add);
 //draw_set_alpha(.5);
-specl = FMODInstanceGetSpectrumSnapshot(argument0,0,maxs*2);
-FMODNormalizeSpectrumData(0,maxs);
+wave=0
+spec=1
+specl = FMODInstanceGetSpectrumSnapshot(argument0,0,maxw);
+FMODNormalizeSpectrumData(0,maxw);
+FMODGetSpectrumBuffer(0,maxw)
 //draw_set_color(merge_color_normal(global.color1,global.color2,0.5+lengthdir_x(0.25,current_time*0.05)))
 dir+=1
 if dir>359 dir=0
 i=1
 angle=0
-repeat(maxs-2)
+repeat(maxs)
 {
 draw_line_width_color(xx,yy,
-xx+lengthdir_x(FMODGetSnapshotEntry(i+1)*w/2,dir+angle)
-+lengthdir_x(FMODGetSnapshotEntry(i+1)*w/2,dir+angle+90),
-yy+lengthdir_y(FMODGetSnapshotEntry(i+1)*h/2,dir+angle)
-+lengthdir_y(FMODGetSnapshotEntry(i+1)*h/2,dir+angle+90),clamp((max(FMODGetSnapshotEntry(i),FMODGetSnapshotEntry(i+1)-min(FMODGetSnapshotEntry(i),FMODGetSnapshotEntry(i+1))))*5,1,2)
+xx+lengthdir_x(SNAPSPECENTRY(i+1)*w/2,dir+angle)
++lengthdir_x(SNAPSPECENTRY(i+1)*w/2,dir+angle+90),
+yy+lengthdir_y(SNAPSPECENTRY(i+1)*h/2,dir+angle)
++lengthdir_y(SNAPSPECENTRY(i+1)*h/2,dir+angle+90),clamp((max(SNAPSPECENTRY(i),SNAPSPECENTRY(i+1))-min(SNAPSPECENTRY(i),SNAPSPECENTRY(i+1)))*5,1,2)
 ,merge_color_normal(global.color1,global.color2,0.5+lengthdir_x(0.25,current_time*0.05+i*0.5))
 ,merge_color_normal(global.color1,global.color2,0.5+lengthdir_x(0.25,current_time*0.05-65+i*0.5))
 )

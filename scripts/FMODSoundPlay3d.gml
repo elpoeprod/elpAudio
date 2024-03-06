@@ -1,6 +1,6 @@
 //export double FMODSoundPlay3d(double sound, double x, double y, double z, double paused)
 
-//Play a sound relative to the playe or listenner position
+//Play a sound relative to the player or listener position
 
 //returns 0 on error
 //retuns a sound instance on success
@@ -23,6 +23,6 @@
 //See FMODSoundAdd for very important information
 //var paused;
 var t;
-t =  external_call(global.dll_FMODSoundPlay3d,argument0,argument1,argument2,argument3,0);
-FMODUpdate();
+t =  external_call(global.dll_FMODSoundPlay3d,argument0,argument1,argument2,argument3,argument4);
+//FMODUpdate();
 return t;

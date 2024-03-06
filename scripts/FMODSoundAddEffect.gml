@@ -25,7 +25,7 @@
 
 //I dont check if an effect exist at the specified position do be careful not to
 //add an effect at the same position twice.
-//sound = SFMODSoundAdd("gunshot.wav")
+//sound = FMODSoundAdd("gunshot.wav")
 //FMODSoundAddEffect(sound, 19,0);
 //FMODSoundAddEffect(sound, 5,1);
 

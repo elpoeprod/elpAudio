@@ -13,7 +13,7 @@ while !file_text_eof(file)
         /*letter=string_copy(disknames,1+i,1)
         myfile=string_replace(myfile,string_copy(myfile,1,1),letter)
         if file_exists(myfile) ds_list_add(global.list,myfile) else i+=1
-        if i>=string_length(disknames)*/ show_message("File doesn't exists: "+string(origfile))
+        if i>=string_length(disknames)*/ show_message("File doesn't exists: "+string(myfile))
         }
 
 file_text_readln(file)

@@ -2,7 +2,7 @@
 //Call this to set the sound doppler setting
 
 //doppler settings 0 to 5) 0 - none 1 - normal, 5 is maximum
-//This truns off doppler for this sound
+//This turns off doppler for this sound
 //sound = FMODSoundAdd("sound.wav",true);
 //FMODSoundSet3dDopplerMax(sound,0);
 //Sound must be 3d

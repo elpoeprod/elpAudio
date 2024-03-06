@@ -6,7 +6,7 @@
 //group is the sound group 0-4
 //Channel is the sound channel (FMODSoundGetNumChannels to figure how many channels you need to fetch)
 //It's usually good enough to get channel 0 (for mono sounds or left channel for stereo sounds) 1 is right, 2 and higher are the other channels if any
-//size is the size of the buffer... keep it 2^n 32,64,128.... 1024 (max)
+//size is the size of the buffer... keep it 2^n 32,64,128.... 16384(max)
 
 //The bigger the sample size the more accurate the reading. Though FMOD documentation does not specify
 //if the sample size corresponds to the smapshot window width or the precision of the snapshot.

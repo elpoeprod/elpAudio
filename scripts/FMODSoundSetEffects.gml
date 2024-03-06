@@ -1,7 +1,7 @@
 //export double FMODSoundSetEffects(double sound, double effects)
 
 //adds sound effects to the sound, just like GM
-//sound = SFMODSoundAdd("gunshot.wav")
+//sound = FMODSoundAdd("gunshot.wav")
 //FMODSoundSetEffects(sound, se_flanger | se_reverb);
 //Action cannot be undone and you should not call this while an
 //instance of the sound exists

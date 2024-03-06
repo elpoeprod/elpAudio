@@ -6,17 +6,20 @@ w = argument3;
 h=argument4
 xx = argument1;
 yy = argument2;
-specl = FMODInstanceGetSpectrumSnapshot(argument0,0,maxs*2);
-FMODNormalizeSpectrumData(0,maxs);
+wave=0
+spec=1
+specl = FMODInstanceGetSpectrumSnapshot(argument0,0,maxw);
+FMODNormalizeSpectrumData(0,maxw);
+FMODGetSpectrumBuffer(0,maxw);
 i=0
 ii=0
 repeats=maxs-2
 repeat(repeats)
 {
 draw_set_color(merge_color_normal(global.color1,global.color2,0.5+lengthdir_x(0.25,current_time*0.05+i*0.5)))
-draw_point_width(xx+ii,yy+h*0.5-FMODGetSnapshotEntry(i)*(h*0.5),(w/maxw))
+draw_point_width(xx+ii+(w/maxs)*0.5,yy+h*0.5-SNAPSPECENTRY(i)*(h*0.5),(w/maxs))
 i+=1
-ii+=(w/maxw)*(maxw/repeats)
+ii+=(w/maxs)*(maxs/repeats)
 }
 //right
 i=0
@@ -26,7 +29,7 @@ FMODNormalizeSpectrumData(1,maxs);
 repeat(repeats)
 {
 draw_set_color(merge_color_normal(global.color1,global.color2,0.5+lengthdir_x(0.25,current_time*0.05+i*0.5)))
-draw_point_width(xx+ii,yy+h*0.5+FMODGetSnapshotEntry(i)*(h*0.5),clamp(w/maxw,1,100))
+draw_point_width(xx+ii+(w/maxs)*0.5,yy+h*0.5+SNAPSPECENTRY(i)*(h*0.5),(w/maxs))
 i+=1
 ii+=(w/maxw)*(maxw/repeats)
 }

@@ -18,5 +18,5 @@
 //See also FMODInstanceSetLoopCount()
 var t;
 t =  external_call(global.dll_FMODSoundLoop,argument0,argument1);
-FMODUpdate();
+//FMODUpdate();
 return t;
