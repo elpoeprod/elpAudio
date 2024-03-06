@@ -1,19 +1,21 @@
 var mydir,i,findfile,txt;
-txt=''
-global.dirr=argument0
-if !string_ends_with(global.dirr,'\') global.dirr+='\'
+global.dirr=string_replace_all(argument0,"/","\")
+//if !string_ends_with(global.dirr,'\') global.dirr=argument0+'\'
 findfile=0
 if directory_exists(global.dirr) {
 i=1
+exts='*.*'//mp3;*.wav;*.ogg;*.flac;*.aif;*.iff;*.opus;*.mod;*.xm;*.it;*.s3m;*.stm;*etm;*.mus;*.mp2;*.ogv;*.m3u;*.m3u8'
 
 // ALL FILES
-mus=file_find_first(global.dirr+'*.*',findfile);
-if(is_supported(mus)){
-ds_list_add(global.list,global.dirr+mus);
-repeat(1024) {
-mus=file_find_next();
-if is_supported(mus){
-ds_list_add(global.list,global.dirr+mus);i+=1;}
+mus[0]=file_find_first(global.dirr+exts,findfile);
+if mus[0]!='' {
+if is_supported(mus[0]) ds_list_add(global.list,global.dirr+mus[0]);
+repeat(2048) {
+mus[i]=file_find_next();
+if mus[i]!='' {
+if is_supported(mus[i]) ds_list_add(global.list,global.dirr+mus[i]);
+i+=1
+}
 }
 }
 file_find_close()
@@ -22,10 +24,11 @@ if argument_count>1 {if argument[1] sort(1,0)}
 
 }
 
-/*
+
+txt=''
 myi=0
 repeat(ds_list_size(global.list)) {
 txt+=string(ds_list_find_value(global.list,myi))+"#"
 myi+=1
 }
-show_message(txt)*/
+show_message(txt)
