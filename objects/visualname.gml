@@ -21,8 +21,9 @@ applies_to=self
 if global.oldfloat==1 and global.play {
         str=ds_list_find_value(global.list,global.current)
         if floatdrawtime1 { // Draw with time
-            if file_is_tracker(str) drawstr=string_repeat(filter(global.trackname)+'   ***   ',6)
-            else drawstr=string_repeat(global.trackname+' ('+current_time_format2(global.songlength)+')   ***   ',6)
+            //if file_is_tracker(str) drawstr=string_repeat(filter(global.trackname)+'   ***   ',6)
+            //else
+            drawstr=string_repeat(global.trackname+' ('+current_time_format2(global.songlength)+')   ***   ',6)
         } else { // Draw without time
             drawstr=string_repeat(global.trackname+'   ***   ',6)
         }
@@ -116,7 +117,7 @@ draw_text(x+time2x,y+time2y,current_time_format2(FMODInstanceGetPosition(global.
 if drawqueue {
 draw_set_font(queuefont)
 draw_set_color(queuecol1)
-draw_text(x+queuex,y+queuey,'88/88')
+draw_text(x+queuex,y+queuey,string_ext('{0}/{1}',string_repeat('8',string_length(string(global.current+1))),string_repeat('8',string_length(string(ds_list_size(global.list))))))
 draw_set_color(queuecol2)
 draw_text(x+queuex,y+queuey,string(string_pad(global.current+1,2))+'/'+string(string_pad(ds_list_size(global.list),2)))
 }
