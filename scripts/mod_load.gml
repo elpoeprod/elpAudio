@@ -1,11 +1,14 @@
 var b;
 b=buffer_create()
-buffer_load(b,argument0)
+buffer_load_part(b,argument0,0,256)
 buffer_set_pos(b,0)
-var h;
+var h,i;i=0
 h=buffer_read_string(b)
 modname=string_copy(h,0,20)
-buffer_set_pos(b,20)
+repeat 21 {if string_copy(modname,20-i,1)==' ' {modname=string_delete(modname,20-i,1)i+=1}}
+if modname='' then return filter(argument0)
+return modname
+/*buffer_set_pos(b,20)
 modsamplename=string_copy(buffer_read_string(b),1,22)
 buffer_set_pos(b,42)
 modsamplelen=hex_to_real(buffer_read_u16(b)*2)
@@ -55,5 +58,5 @@ patternrownum[hh]=buffer_read_u16(b)
 patternpacksize[hh]=buffer_read_u16(b)
 //show_message(string(pattern[hh])+"#"+string(patternpacktype[hh])+"#"+string(patternrownum[hh])+"#"+string(patternpacksize[hh]))
 hh+=1
-}
+}*/
 buffer_destroy(b)

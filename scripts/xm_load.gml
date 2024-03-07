@@ -1,12 +1,17 @@
 var b;
 b=buffer_create()
-buffer_load(b,argument0)
+buffer_load_part(b,argument0,0,256)
 buffer_set_pos(b,0)
-var h;
+var h,i;
+i=0
 h=buffer_read_string(b)
 xmname=string_copy(h,18,20)
-repeat 20 {if string_ends_with(xmname,' ') string_delete(xmname,20,1)}
-buffer_set_pos(b,38)
+//show_message(string_replace_all(xmname,' ','|'))
+repeat 21 {if string_copy(xmname,20-i,1)==' ' {xmname=string_delete(xmname,20-i,1)i+=1}}
+if xmname='' then return filter(argument0)
+return xmname
+//show_message(string_replace_all(xmname,' ','|'))
+/*buffer_set_pos(b,38)
 xmfrom=string_copy(buffer_read_string(b),1,20)
 buffer_set_pos(b,58)
 xmver=hex_to_real(buffer_read_u16(b))
@@ -32,13 +37,12 @@ buffer_set_pos(b,80)
 xmpatternorder=''
 
 i=0
-do {
+repeat(xmpatternnum) {
 mystr=hex_to_real(buffer_read_u8(b))
 xmpattern[i]=mystr
 xmpatternorder+="#"+hex_to_real(i)+" "+mystr
 i+=1
-} until (hex_to_real(buffer_read_u8(b))='00' and i>30) or i=256
-
+}
 xmpatterns=0
 
 ii=0
@@ -56,5 +60,5 @@ patternrownum[hh]=buffer_read_u16(b)
 patternpacksize[hh]=buffer_read_u16(b)
 //show_message(string(pattern[hh])+"#"+string(patternpacktype[hh])+"#"+string(patternrownum[hh])+"#"+string(patternpacksize[hh]))
 hh+=1
-}
+}*/
 buffer_destroy(b)

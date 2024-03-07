@@ -12,7 +12,7 @@ h=argument4
 xx = argument1;
 yy = argument2+h
 h = h/2;
-wavel = FMODInstanceGetWaveSnapshot(argument0,0,maxw)
+wavel = FMODInstanceGetWaveSnapshot2(argument0,0,maxw)
 FMODNormalizeWaveData(0,maxw)
 FMODGetWaveBuffer(0,maxw)
 draw_set_color(global.visfgcol);
@@ -26,16 +26,14 @@ repeat(maxs)
     xx+=w/maxs;
 }
 
-waver = FMODInstanceGetWaveSnapshot(argument0,1,maxw)
-wave=1
-spec=0
+waver = FMODInstanceGetWaveSnapshot2(argument0,1,maxw)
 FMODNormalizeWaveData(0,maxw)
 FMODGetWaveBuffer(0,maxw)
 draw_set_color(global.visfgcol);
 draw_set_alpha(0.6)
 i = 0;
 xx=argument1;
-repeat(maxs-2)
+repeat(maxs)
 {
     draw_line(xx,yy-SNAPWAVEENTRY(i)*h-h,xx+w/maxs,yy-SNAPWAVEENTRY(i+1)*h-h)
     i+=1;

@@ -1,11 +1,9 @@
 var v;v=argument0
 if global.paused or global.stopped {
-return lengthdir_x(1,current_time*0.05+v)
+return lengthdir_x(1,current_time*0.05+v)-0.015
 }
 else {
-var formula;formula = (ord(string_char_at(global.FMODbuf,argument0*(128/__visual_freq)))/127) - 1
-//if floor(formula*2) = -1 then return 0
-return formula
-// if n <= 0 then wave is negative
-//otherwise its positive
+//this is fucked up may god have a mercy on this
+//oh god this works
+return lengthdir_y(1,2*(string_ord_at(global.FMODbuf,(argument0*floor(256/__visual_freq)))*2.8125)) //fine pitch
 }
