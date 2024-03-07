@@ -5,14 +5,14 @@ view_hport[0]=global.plrheight
 if !variable_global_exists('___hhh') {
 room_set_view(room,0,1,0,0,global.plrwidth,global.plrheight,0,0,global.plrwidth,global.plrheight,0,0,0,0,-1)
 room_set_width(room,global.plrwidth)
-room_set_height(room,global.plrwidth)
+room_set_height(room,global.plrheight)
 room_restart()
 global.___hhh=1
-} else {
+}/* else {
 if global.___hhh=0 {
 room_set_view(room,0,1,0,0,global.plrwidth,global.plrheight,0,0,global.plrwidth,global.plrheight,0,0,0,0,-1)
 room_set_width(room,global.plrwidth)
-room_set_height(room,global.plrwidth)
+room_set_height(room,global.plrheight)
 room_restart()
 global.___hhh=1
 }

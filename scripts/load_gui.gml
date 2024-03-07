@@ -186,7 +186,7 @@ i+=1
 mybutton=instance_create(0,0,settingsobj)
 mybutton.x=ini_read_real('Interface','butsetx',336)
 mybutton.y=ini_read_real('Interface','butsety',336)
-mybutton.custom=ini_read_real('Interface','usecustomsettings',0)
+/*mybutton.custom=ini_read_real('Interface','usecustomsettings',0)
 mybutton.custombgimg=sprite_add(filename_path(argument0)+ini_read_string('Interface','customstngbg','settings_tabs_bg.png'),1,0,0,0,0)
 mybutton.customimg=sprite_add(filename_path(argument0)+ini_read_string('Interface','customstngfg','settings_tabs.png'),1,0,0,0,0)
 mybutton.customx=ini_read_real('Interface','setcustomx',80)
@@ -197,6 +197,6 @@ mybutton.custombgx=ini_read_real('Interface','setcustombgx',10)
 mybutton.custombgy=ini_read_real('Interface','setcustombgy',144)
 mybutton.custombgw=ini_read_real('Interface','setcustombgw',460)
 mybutton.custombgh=ini_read_real('Interface','setcustombgh',156)
-
+*/
 global.plrwidth=ini_read_real('Interface','playerW',480)
 global.plrheight=ini_read_real('Interface','playerH',80)
