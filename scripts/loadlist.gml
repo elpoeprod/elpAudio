@@ -8,13 +8,12 @@ while !file_text_eof(file)
 {
     i=1
     myfile=file_text_read_string(file)
-    if file_exists(myfile) ds_list_add(global.list,myfile)
-    else {
-        /*letter=string_copy(disknames,1+i,1)
-        myfile=string_replace(myfile,string_copy(myfile,1,1),letter)
-        if file_exists(myfile) ds_list_add(global.list,myfile) else i+=1
-        if i>=string_length(disknames)*/ show_message("File doesn't exists: "+string(myfile))
-        }
+    if file_exists(myfile) {
+       if is_supported(myfile)
+          ds_list_add(global.list,myfile)
+       else
+          show_message('Unsupported file format: '+filename_ext(myfile)+".")
+          } else {show_message("File doesn't exists: "+string(myfile))}
 
 file_text_readln(file)
 
