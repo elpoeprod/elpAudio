@@ -1,5 +1,5 @@
 var f;f=argument0
-if string_lower(filename_ext(f))=='' return true
+//if string_lower(filename_ext(f))=='' return true
 if string_lower(filename_ext(f))=='.mp3' return true
 if string_lower(filename_ext(f))=='.ogg' return true
 if string_lower(filename_ext(f))=='.wav' return true
@@ -15,6 +15,7 @@ if string_lower(filename_ext(f))=='.m3u8' return true
 if string_lower(filename_ext(f))=='.ogv' return true
 if string_lower(filename_ext(f))=='.mp2' return true
 
+/*
 if string_lower(string_copy(f,1,string_pos('.',f)))=='mod.' return true
 if string_lower(string_copy(f,1,string_pos('.',f)))=='xm.' return true
 if string_lower(string_copy(f,1,string_pos('.',f)))=='it.' return true
@@ -26,5 +27,5 @@ if string_lower(string_copy(f,1,string_pos('.',f)))=='mod.' return true
 if string_lower(string_copy(f,1,string_pos('.',f)))=='mod.' return true
 if string_lower(string_copy(f,1,string_pos('.',f)))=='mod.' return true
 if string_lower(string_copy(f,1,string_pos('.',f)))=='mod.' return true
-
+*/
 return false
