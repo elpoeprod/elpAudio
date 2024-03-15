@@ -10,7 +10,7 @@ yy = argument2//+h
 //draw_set_alpha(.5);
 wave=0
 spec=1
-specl = FMODInstanceGetSpectrumSnapshot(argument0,0,maxw);
+specl = FMODInstanceGetSpectrumSnapshot2(argument0,0,maxw);
 FMODNormalizeSpectrumData(0,maxw);
 FMODGetSpectrumBuffer(0,maxw)
 i=0

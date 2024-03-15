@@ -19,11 +19,15 @@ mybutton=visualiser//instance_create(0,0,visualiser)
 global.visualx=ini_read_real('Interface','visX',336)
 global.visualy=ini_read_real('Interface','visY',16)
 global.visualw=ini_read_real('Interface','visW',144)
+if global.visualw==0 global.visualw=display_get_width()
 global.visualh=ini_read_real('Interface','visH',64)
-mybutton.x=ini_read_real('Interface','visX',336)
-mybutton.y=ini_read_real('Interface','visY',16)
-mybutton.width=ini_read_real('Interface','visW',144)
-mybutton.height=ini_read_real('Interface','visH',64)
+if global.visualh==0 global.visualh=display_get_height()
+mybutton.x=global.visualx
+mybutton.y=global.visualy
+mybutton.width=global.visualw
+mybutton.height=global.visualh
+mybutton.surf1=surface_create(global.visualw,global.visualh)
+mybutton.surf2=surface_create(global.visualw,global.visualh)
 mybutton.usefgvisimg=ini_read_real('Interface','usefgvisimg',0)
 mybutton.visfgimg=sprite_add(filename_path(argument0)+ini_read_string('Interface','visfgimg','vis_fg.png'),1,0,0,0,0)
 mybutton.visfgx=ini_read_real('Interface','visfgx',0)
@@ -199,4 +203,6 @@ mybutton.custombgw=ini_read_real('Interface','setcustombgw',460)
 mybutton.custombgh=ini_read_real('Interface','setcustombgh',156)
 */
 global.plrwidth=ini_read_real('Interface','playerW',480)
+if global.plrwidth=0 global.plrwidth=display_get_width()
 global.plrheight=ini_read_real('Interface','playerH',80)
+if global.plrheight=0 global.plrheight=display_get_height()

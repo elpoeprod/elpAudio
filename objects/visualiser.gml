@@ -5,9 +5,6 @@ action_id=603
 applies_to=self
 */
 dir=random(1000)
-
-surf1=surface_create(global.visualw,global.visualh)
-surf2=surface_create(global.visualw,global.visualh)
 xx=0
 myh=0
 #define Step_0
@@ -72,6 +69,7 @@ switch (__visualiser) {
     case 2: visualise3(myinst,x,y,width,height);break;
     case 3: visualise4(myinst,x,y,width,height);break;
     case 4: visualise5(myinst,x,y,width,height);break;
+    case 5: visualise6(myinst,x,y,width,height);break;
 //    case 5: visualise6(x,y);break;
     default: break;
     }
@@ -81,3 +79,4 @@ if sprite_exists(visfgimg) and visfgimg>-1 {
 draw_sprite_stretched_ext(visfgimg,0,x+visfgx,y+visfgy,visfgw,visfgh,c_white,1)
 }
 }
+//draw_circle(abs(lengthdir_x(display_get_width(),current_time*0.075)),140,50,0)

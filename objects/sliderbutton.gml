@@ -37,11 +37,11 @@ global.pos=(FMODInstanceGetPosition(global.playing)*(sprite_width))
 draw_self()
 if point_in_rectangle(mouse_x,mouse_y,x,y,x+sprite_width,y+sprite_height) {
 if mouse_check_button(mb_left)
-myx=clamp(mouse_x-slw/2,x,sprite_width-slw/2)
+myx=clamp(mouse_x-slw/2,x,x+sprite_width-slw)
 else
-myx=clamp(x+global.pos,x,sprite_width-slw/2)
+myx=clamp(x+global.pos,x,x+sprite_width-slw)
 } else
-myx=clamp(x+global.pos,x,sprite_width-slw/2)
+myx=clamp(x+global.pos,x,x+sprite_width-slw)
 
 draw_sprite_ext(global.__ico_slide,0,myx,y+sprite_height/2,1,1,0,__butslidercol,1)
 

@@ -1,3 +1,5 @@
+view_visible[0]=true
+room_set_view_enabled(room,true)
 view_wview[0]=global.plrwidth
 view_hview[0]=global.plrheight
 view_wport[0]=global.plrwidth

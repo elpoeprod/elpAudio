@@ -1,4 +1,4 @@
-var b;
+var b,i;i=0
 b=buffer_create()
 buffer_load(b,argument0)
 buffer_set_pos(b,0)

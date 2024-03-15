@@ -24,11 +24,11 @@ if argument_count>1 {if argument[1] sort(1,0)}
 
 }
 
-
+/*
 txt=''
 myi=0
 repeat(ds_list_size(global.list)) {
 txt+=string(ds_list_find_value(global.list,myi))+"#"
 myi+=1
 }
-show_message(txt)
+show_message(txt)*/
