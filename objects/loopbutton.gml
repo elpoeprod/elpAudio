@@ -25,5 +25,5 @@ applies_to=self
 if global.play {
 on=!on
 image_index=on
-FMODSoundSetLoopCount(global.musicsound,on*1024)
+FMODInstanceSetLoopCount(global.playing,-1*on)
 } else image_index=0

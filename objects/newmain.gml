@@ -34,6 +34,7 @@ set_working_directory(registry_read_string_ext('elpAudio','work_dir'))
 //why the fuck i needed to save directory in registry when i can do this
 progdir=program_directory
 if debug_mode progdir=working_directory
+if os_type=os_linux progdir=string_replace_all(program_directory,'\','/')+'/elpAudio/'
 set_working_directory(progdir)
 global.is_stereo=0
 settings_load()
