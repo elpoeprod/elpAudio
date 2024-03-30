@@ -42,6 +42,7 @@ global.played_from_arg=0
 randomize()
 
 window_set_chromakey(1,hex_to_col($014426))
+//window_set_alphablend(1)
 message_position(window_get_x(),window_get_y()+window_get_height())
 message_size(clamp(view_wview[0],400,900),clamp(view_hview[0],200,900))
 global.changeview=1
