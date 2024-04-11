@@ -9,11 +9,14 @@ if string_lower(filename_ext(f))=='.xm' return true
 if string_lower(filename_ext(f))=='.stm' return true
 if string_lower(filename_ext(f))=='.it' return true
 if string_lower(filename_ext(f))=='.s3m' return true
+if string_lower(filename_ext(f))=='.stm' return true
 if string_lower(filename_ext(f))=='.etm' return true
 if string_lower(filename_ext(f))=='.m3u' return true
 if string_lower(filename_ext(f))=='.m3u8' return true
 if string_lower(filename_ext(f))=='.ogv' return true
-if string_lower(filename_ext(f))=='.mp2' return true
+if string_lower(filename_ext(f))=='.mpeg' return true
+if string_lower(filename_ext(f))=='.aiff' return true
+if string_lower(filename_ext(f))=='.raw' return true
 
 /*
 if string_lower(string_copy(f,1,string_pos('.',f)))=='mod.' return true
