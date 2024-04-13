@@ -1,5 +1,5 @@
-view_visible[0]=true
-room_set_view_enabled(room,true)
+/* //view_visible[0]=true
+//room_set_view_enabled(room,true)
 view_wview[0]=global.plrwidth
 view_hview[0]=global.plrheight
 view_wport[0]=global.plrwidth
@@ -8,7 +8,7 @@ if !variable_global_exists('___hhh') {
 room_set_view(room,0,1,0,0,global.plrwidth,global.plrheight,0,0,global.plrwidth,global.plrheight,0,0,0,0,-1)
 room_set_width(room,global.plrwidth)
 room_set_height(room,global.plrheight)
-room_restart()
+//room_restart()
 global.___hhh=1
 }/* else {
 if global.___hhh=0 {
