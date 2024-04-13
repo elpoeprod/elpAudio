@@ -5,7 +5,7 @@ window_get_x()+x-1000*pressed,window_get_y()+y-1000*pressed
 window_get_x()+x+w-w/6+1000*pressed,window_get_y()+y+h+1000*pressed
 )
 {
-if mouse_check_button(mb_left) {
+if mouse_check_direct(mb_left) {
 if hh=0 {
 mx=mouse_x
 my=mouse_y
