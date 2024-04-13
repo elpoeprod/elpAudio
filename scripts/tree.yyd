@@ -191,6 +191,7 @@
 	|savelist
 	|loadlist
 	|ngame_end
+	|read_wh
 +SAFEINI
 	|sini_open
 	|sini_read_string
