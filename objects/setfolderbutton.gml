@@ -12,6 +12,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if !window_get_active() exit
 image_index=1
 #define Mouse_7
 /*"/*'/**//* YYD ACTION
@@ -19,6 +20,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if !window_get_active() exit
 //abandoned and broken
 
 /*image_index=0

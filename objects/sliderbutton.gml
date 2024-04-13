@@ -14,6 +14,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if !window_get_active() exit
 can=1
 #define Mouse_11
 /*"/*'/**//* YYD ACTION
@@ -21,6 +22,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if !window_get_active() exit
 //can=0
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -44,6 +46,9 @@ myx=clamp(x+global.pos,x,x+sprite_width-slw)
 myx=clamp(x+global.pos,x,x+sprite_width-slw)
 
 draw_sprite_ext(global.__ico_slide,0,myx,y+sprite_height/2,1,1,0,__butslidercol,1)
+
+
+if !window_get_active() exit
 
 if
 point_in_rectangle(mouse_x,mouse_y,x,y,x+sprite_width,y+sprite_height)

@@ -22,21 +22,7 @@ FMODinit(100,1)
 LoadFMOD()
 FMODinit(100,1)
 global.__init=0
-
-global.current=0
-room_caption='elpAudio '+get_version()
-global.play=0
-global.songlength=0
-global.pos=0
-global.paused=0
-global.stopped=0
-global.trackname=''
-global.playing=-1
-global.themepath='themes\default\theme.ini'
-global.current=0
-global.thesong=''
 global.played_from_arg=0
-
 }
 
 randomize()
@@ -116,9 +102,9 @@ applies_to=self
 */
 if keyboard_check_pressed(vk_f4) {
 if global.play mus_stop()
-//FMODfree()
+FMODfree()
 settings_save()
-game_end()
+ngame_end()
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION

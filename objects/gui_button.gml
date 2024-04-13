@@ -12,6 +12,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if !window_get_active() exit
 image_index=2+3*button
 #define Mouse_7
 /*"/*'/**//* YYD ACTION
@@ -19,6 +20,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+//if !window_get_active() exit
 image_index=3*button
 if button=0 window_minimize()
 if button=1 {
@@ -36,6 +38,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if !window_get_active() exit
 image_index=1+3*button
 #define Mouse_11
 /*"/*'/**//* YYD ACTION
@@ -43,6 +46,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if !window_get_active() exit
 image_index=3*button
 #define Draw_0
 /*"/*'/**//* YYD ACTION

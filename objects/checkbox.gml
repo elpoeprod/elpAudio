@@ -11,6 +11,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if !window_get_active() exit
 /*if opt>-1 on=!on
 image_index=on
 if opt=-1 {

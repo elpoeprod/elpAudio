@@ -14,6 +14,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if !window_get_active() exit
 image_index=1
 #define Mouse_7
 /*"/*'/**//* YYD ACTION
@@ -21,6 +22,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if !window_get_active() exit
 MainMenu.stri=0
 visualname.alarm[0]=1
 visualname.stri=0
@@ -37,6 +39,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if !window_get_active() exit
 enter=1
 #define Mouse_11
 /*"/*'/**//* YYD ACTION
@@ -44,4 +47,5 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if !window_get_active() exit
 enter=0

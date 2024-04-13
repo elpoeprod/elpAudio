@@ -25,7 +25,7 @@ if global.play {
 if __visualiser=0 {
 surface_copy(surf2,0,0,surf1)
 surface_set_target(surf1)
-draw_clear_alpha(global.visbgcol,0.8)
+//draw_clear_alpha(global.visbgcol,0.8)
 draw_surface_ext(surf2,0,0,1,1,0,c_white,0.97)
 snapinstance(myinst,0,0,width,height)
 surface_reset_target()

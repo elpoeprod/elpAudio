@@ -12,6 +12,7 @@ stri=0
 xx=0
 sprite_index=global.__floatbg
 oldsurf=surface_create(oldfloatw,40)
+//surface_resize('oldsurf',oldfloatw,40,1,0)
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -31,7 +32,7 @@ mystr=string_copy(drawstr,1+stri,30)//floor(oldfloatw/(string_width('a')-2)))
 stri+=1
 if stri>string_length(drawstr)/2 stri=0
 }
-alarm[0]=(15/__speed)*20
+alarm[0]=((15/__speed)*20)*(60/max(fps,1))
 
 /*
 if global.play {
@@ -54,14 +55,17 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-if !surface_exists(oldsurf) oldsurf=surface_create(oldfloatw,40)
+if !surface_exists(oldsurf) {
+oldsurf=surface_create(oldfloatw,40)
+//surface_resize(oldsurf,oldfloatw,40,1,0)
+}
 draw_set_font(global.__fon_vis)
 surface_set_target(oldsurf)
 draw_clear_alpha(0,0)
 draw_set_color(global.floatcolor)
 draw_set_halign(fa_left)
 
-if global.oldfloat draw_text(0,6,mystr)
+if global.oldfloat draw_text_transformed(0,6,mystr,1,1,0)
 surface_reset_target()
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -93,14 +97,14 @@ else { // Draw without the time
 mystr=global.trackname
 }
 
-if floatiertext {if textx+string_width(mystr)>width xx-=__speed/15}
+if floatiertext {if textx+string_width(mystr)>width xx-=(__speed/15)*(60/max(fps,1))}
 if xx<-string_width(mystr)-textx xx=width+10
 //draw_text(x+xx,y+6,mystr)
 }
 
 if global.oldfloat==0 draw_text(x+textx+xx,y+texty+6,mystr)
 else
-draw_surface_ext(oldsurf,textx,texty,1,1,0,c_white,1)
+draw_surface_ext(oldsurf,x+textx,y+texty,1,1,0,c_white,1)
 
 if drawfloattime2 {
 draw_set_font(time2font)

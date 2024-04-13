@@ -15,6 +15,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if !window_get_active() exit
 image_index=2
 #define Mouse_7
 /*"/*'/**//* YYD ACTION
@@ -22,6 +23,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+if !window_get_active() exit
 if global.play {
 on=!on
 image_index=on
