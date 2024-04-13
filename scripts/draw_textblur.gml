@@ -1,16 +1,11 @@
-var myalpha,xx;
-xx=2
-myalpha=global.floatalpha
-draw_set_alpha(myalpha*0.75)
-draw_text(floor(argument0),floor(argument1),argument2)
-/*draw_set_alpha(myalpha*0.5)
-draw_text(argument0+xx/2,argument1,argument2)
-draw_text(argument0-xx/2,argument1,argument2)
-draw_text(argument0,argument1+xx/2,argument2)
-draw_text(argument0,argument1-xx/2,argument2)*/
-draw_set_alpha(myalpha*0.2)
-draw_text(floor(argument0+xx),floor(argument1),argument2)
-draw_text(floor(argument0-xx),floor(argument1),argument2)
-draw_text(floor(argument0),floor(argument1+xx),argument2)
-draw_text(floor(argument0),floor(argument1-xx),argument2)
-draw_set_alpha(myalpha)
+///draw_text_blur(x,y,str)
+var t;t=0
+draw_set_alpha(0.02)
+repeat(25) {
+draw_text(argument0+t/10,argument1,argument2)
+draw_text(argument0-t/10,argument1,argument2)
+draw_text(argument0,argument1+t/10,argument2)
+draw_text(argument0,argument1-t/10,argument2)
+t+=1
+}
+draw_set_alpha(1)
