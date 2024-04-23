@@ -5,6 +5,10 @@ elpAudio - simple audio player using FMOD, that supports custom themes, music fi
 
 For the moment elpAudio supports only Windows systems. You can try run elpAudio through WINE on Linux, but this can work horrible.
 
+##Do you have a bug? Or you just want to help the project, ask a question or give an idea? 
+Send your message to telegram: **@cactusquid**, or on e-mail: **elpoepstudios@gmail.com** 
+
+
 # HOW TO USE:
 -go to releases, download latest version of elpAudio and open the elpAudio.exe. Enjoy the "new **WinAmp**"!
 
