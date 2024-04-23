@@ -1,6 +1,9 @@
 if !variable_global_exists('list') global.list=ds_list_create()
 else ds_list_clear(global.list)
 
+if !registry_exists_ext('elpAudio','work_dir')
+registry_write_string_ext('elpAudio','work_dir',program_directory)
+
 room_caption='elpAudio '+get_version()
 global.play=0
 global.paused=0
@@ -11,8 +14,9 @@ global.themepath='themes\default\theme.ini'
 global.current=0
 global.thesong=''
 global.__progdir=registry_read_string_ext('elpAudio','work_dir')+'\'
+if debug_mode global.__progdir=working_directory+'\'
 if os_type==os_linux global.__progdir=program_directory+'\'
-
+set_working_directory(global.__progdir)
 globalvar __enablefloat,__stopsongafter,__speed,__visualiser,__visual_freq,__stick_to_edges;
 __enablefloat=0
 __stopsongafter=0
