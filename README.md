@@ -14,7 +14,7 @@ Send your message to telegram: **@cactusquid**, or on e-mail: **elpoepstudios@gm
 
 ## To open source code of elpAudio you need:
 ### First way
-You need to install game maker 8.2.7z file in that repository.
+You need to open "Game Maker 8.2 Setup.exe" file in that repository.
 Then download all of the files in the repository and click on "elpAudio.gm82". Done! Now you can do anything.
 
 ### Second way
