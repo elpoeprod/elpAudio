@@ -33,17 +33,19 @@ applies_to=self
 slw=sprite_get_width(global.__ico_slide)
 
 if global.play {//if !file_is_tracker(global.thesong) {
-global.pos=(FMODInstanceGetPosition(global.playing)*(sprite_width))
+global.pos=FMODInstanceGetPosition(global.playing)
 //} else global.pos=sprite_width/100
 }
-draw_self()
 if point_in_rectangle(mouse_x,mouse_y,x,y,x+sprite_width,y+sprite_height) {
 if mouse_check_button(mb_left)
 myx=clamp(mouse_x-slw/2,x,x+sprite_width-slw)
 else
-myx=clamp(x+global.pos,x,x+sprite_width-slw)
+myx=clamp(x+global.pos*sprite_width,x,x+sprite_width-slw)
 } else
-myx=clamp(x+global.pos,x,x+sprite_width-slw)
+myx=clamp(x+global.pos*sprite_width,x,x+sprite_width-slw)
+
+draw_self()
+draw_sprite_part_ext(sprite_index,1,0,0,myx-x+slw/2,sprite_height,x,y,1,1,c_white,1)
 
 draw_sprite_ext(global.__ico_slide,0,myx,y+sprite_height/2,1,1,0,__butslidercol,1)
 
