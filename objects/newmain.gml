@@ -19,6 +19,7 @@ message_caption(0,'')
 if os_type=os_linux global.__progdir=string_replace_all(program_directory,'\','/')+'/elpAudio/'
 set_working_directory(global.__progdir)
 global.is_stereo=0
+global.list_size=0
 settings_load()
 get_theme(global.themepath)
 draw_set_circle_precision(64)
@@ -31,3 +32,4 @@ action_id=603
 applies_to=self
 */
 //view_stabilize()
+global.list_size=ds_list_size(global.list)
