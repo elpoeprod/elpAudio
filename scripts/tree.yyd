@@ -192,9 +192,6 @@
 	|loadlist
 	|ngame_end
 	|read_wh
-+SAFEINI
-	|sini_open
-	|sini_read_string
 +elpaudio
 	|current_time_format
 	|current_time_format2
@@ -212,17 +209,11 @@
 	|is_negative
 	|filename_ext_new
 	|get_song_length
-+new_list_outdated
-	|new_list_create
-	|new_list_find
-	|new_list_add
-	|new_list_delete
-	|new_list_clear
-	|new_list_sort
-	|new_list_size
-	|new_list_shuffle
 |string_ext
 |is_supported
 |LINUX_FIX
 |tralse
 |mouse_grab
++lini
+	|lini_open
+	|lini_read_key
