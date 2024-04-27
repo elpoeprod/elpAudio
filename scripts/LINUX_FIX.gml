@@ -1,1 +1,1 @@
-return working_directory+'/'+string(argument0)
+return program_directory+'/'+string(argument0)
