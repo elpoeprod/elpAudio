@@ -1,10 +1,10 @@
 
 buttonplay
 buttonnext
-buttonabout
+
 sprFloatBG
 buttonsettings
-buttonsetfolder
+
 buttonpause
 buttonstop
 
@@ -18,7 +18,7 @@ buttonsort
 buttonvisualize
 buttonplayrandom
 buttonslider
-checkspr
+
 buttonsavelist
 buttonloadlist
 

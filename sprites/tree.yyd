@@ -2,10 +2,8 @@
 |buttonplayrandom
 |buttonnext
 |buttonprev
-|buttonabout
 |sprFloatBG
 |buttonsettings
-|buttonsetfolder
 |buttonpause
 |buttonstop
 |minigui
@@ -16,7 +14,6 @@
 |buttonsort
 |buttonvisualize
 |buttonslider
-|checkspr
 |buttonsavelist
 |buttonloadlist
 |buttonloop
