@@ -7,10 +7,8 @@
 |alwontopbutton
 |next_button
 |prev_button
-|aboutbutton
 |visualname
 |settingsobj
-|setfolderbutton
 |gui_button
 |addmusicbutton
 |visualiserbutton
@@ -21,6 +19,5 @@
 |sliderbutton
 |visualiser
 |thebutton
-|checkbox
 |backobj
 |loopbutton
