@@ -7,6 +7,7 @@ applies_to=self
 dir=random(1000)
 xx=0
 myh=0
+turnon=0
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -25,8 +26,9 @@ if global.play {
 if __visualiser=0 {
 surface_copy(surf2,0,0,surf1)
 surface_set_target(surf1)
-//draw_clear_alpha(global.visbgcol,0.8)
-draw_surface_ext(surf2,0,0,1,1,0,c_white,0.97)
+if __enablevisdist {draw_clear_alpha(global.visbgcol,0.8)
+draw_surface_ext(surf2,0,0,1,1,0,c_white,0.97)}
+else draw_clear_alpha(0,0)
 snapinstance(myinst,0,0,width,height)
 surface_reset_target()
 }
@@ -79,4 +81,11 @@ if sprite_exists(visfgimg) and visfgimg>-1 {
 draw_sprite_stretched_ext(visfgimg,0,x+visfgx,y+visfgy,visfgw,visfgh,c_white,1)
 }
 }
-//draw_circle(abs(lengthdir_x(display_get_width(),current_time*0.075)),140,50,0)
+if turnon draw_text(x+1,y+1,string_ext('{0}/144',fps))
+#define KeyPress_120
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+turnon=!turnon
