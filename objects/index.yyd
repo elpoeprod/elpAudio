@@ -2,15 +2,9 @@
 MainMenu
 play_button
 next_button
-
-
 visualname
 settingsobj
-
-
-
 pause
-
 stopbutton
 prev_button
 gui_button
@@ -23,7 +17,6 @@ visualiserbutton
 playrandombutton
 thebutton
 sliderbutton
-
 savelistbutton
 loadlistbutton
 newmain
