@@ -40,6 +40,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+///PARAMETER STRING
 if parameter_count()>0 and global.played_from_arg==0 {mus_play(parameter_string(1)) ds_list_add(global.list,parameter_string(1)) global.played_from_arg=1}
 #define Alarm_1
 /*"/*'/**//* YYD ACTION
@@ -66,6 +67,7 @@ room_caption='['+current_time_format(FMODInstanceGetPosition(global.playing)*glo
 }
 if window_get_taskbar_caption()!=room_caption
 window_set_taskbar_caption(room_caption)
+if global.current>global.list_size and global.list_size>0 global.current=global.list_size
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
