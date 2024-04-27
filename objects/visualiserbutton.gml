@@ -23,3 +23,4 @@ applies_to=self
 if !window_get_active() exit
 image_index=0
 if __visualiser<5+global.customvisuals __visualiser+=1 else __visualiser=0
+global.FMODbuf=''
