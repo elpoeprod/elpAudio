@@ -17,7 +17,10 @@ global.__progdir=registry_read_string_ext('elpAudio','work_dir')+'\'
 if debug_mode global.__progdir=working_directory+'\'
 if os_type==os_linux global.__progdir=program_directory+'\'
 set_working_directory(global.__progdir)
-globalvar __enablefloat,__stopsongafter,__speed,__visualiser,__visual_freq,__stick_to_edges;
+globalvar __enablefloat,__stopsongafter,__speed,__visualiser,__visual_freq,__stick_to_edges
+__enablevisdist
+;
+__enablevisdist=0
 __enablefloat=0
 __stopsongafter=0
 __visualiser=0
