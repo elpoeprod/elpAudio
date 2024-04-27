@@ -140,6 +140,8 @@ mybutton.usebgimg=ini_read_real('Interface','floatusebgimg',1)
 mybutton.floattime2col1=hex_to_col(real_hex(ini_read_string('Interface','floattime2col1','$000000')))
 mybutton.floattime2col2=hex_to_col(real_hex(ini_read_string('Interface','floattime2col2','$FFFFFF')))
 
+mybutton.drawcursong=ini_read_real('Interface','floatdrawcursong',0)
+
 
 mybutton=volumebutton//instance_create(0,0,volumebutton)
 mybutton.x=ini_read_real('Interface','butvolx',64)
