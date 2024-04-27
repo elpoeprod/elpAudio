@@ -26,6 +26,12 @@ applies_to=self
 */
 if !window_get_active() exit
 image_index=0
+if !global.play {
+MainMenu.stri=0
+visualname.stri=0
+visualname.alarm[0]=1
+visualname.xx=0
+}
 enter=0
 if ds_list_size(global.list)<1 exit
 if global.paused or global.stopped {mus_unpause() exit}
