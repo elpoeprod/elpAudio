@@ -3,11 +3,11 @@ MainMenu
 play_button
 next_button
 
-aboutbutton
+
 visualname
 settingsobj
 
-setfolderbutton
+
 
 pause
 
@@ -23,7 +23,7 @@ visualiserbutton
 playrandombutton
 thebutton
 sliderbutton
-checkbox
+
 savelistbutton
 loadlistbutton
 newmain
