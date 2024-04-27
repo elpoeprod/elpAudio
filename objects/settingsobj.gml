@@ -27,4 +27,11 @@ applies_to=self
 if !window_get_active() exit
 image_index=0
 enter=0
-execute_program_silent(global.__progdir+'data\settings.exe')
+execute_program(global.__progdir+'data\elpaudiosettings.exe','',0)
+#define Draw_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+draw_sprite_ext(sprite_index,0,x,y,1,1,0,c_white,1)
