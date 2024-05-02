@@ -12,8 +12,8 @@ while !file_text_eof(file)
        if is_supported(myfile)
           ds_list_add(global.list,myfile)
        else
-          show_message('Unsupported file format: '+filename_ext(myfile)+".")
-          } else {show_message("File doesn't exists: "+string(myfile))}
+          if room=mainroom show_message('Unsupported file format: "'+filename_ext(myfile)+'".#('+myfile+')')
+          } else {if room=mainroom show_message("File doesn't exists: "+string(myfile))}
 
 file_text_readln(file)
 
