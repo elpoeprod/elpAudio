@@ -19,6 +19,8 @@ click=0
 
 showagain=1
 image_blend=__butaddmuscol
+
+globalvar __pl_window;__pl_window=-1
 #define Alarm_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -36,10 +38,20 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/*file_drag_enable(1)
-if file_drag_count()=0 exit
+///FILE DRAGGING
+if file_drag_count()<=0 exit
+i=0
+repeat(file_drag_count()) {
+ds_list_add(global.list,file_drag_name(i))
+i+=1
+}
+if global.list_size>file_drag_count()
+global.current=global.list_size-file_drag_count()+1
+else global.current=0
 
-show_message(file_drag_name(0))*/
+if global.play mus_stop()
+mus_play(ds_list_find_value(global.list,global.current))
+file_drag_clear()
 #define Mouse_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -95,7 +107,14 @@ if select=4 {
 ds_list_clear(global.list)
 }
 if select=5 {
-execute_program(global.__progdir+'data\elpAudioList.exe','',0)
+//execute_program(global.__progdir+'data\elpAudioList.exe','',0)
+__pl_window=gmSDL_windowCreate(window_get_x(),window_get_y()+window_get_height(),global.plrwidth,global.plrheight,0)
+gmSDL_windowTitleSet(__pl_window,"Playlist Manager")
+spr=gmSDL_spriteLoad(__pl_window,"themes\winamp_modern\playlist\pl_front.png",0)
 }
 draw=0
+}
+if __pl_window!=-1 {
+gmSDL_windowUpdate(__pl_window)
+gmSDL_spriteDraw(__pl_window,spr,0,0)
 }
