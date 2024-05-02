@@ -170,6 +170,22 @@
 		|FMODCreateSoundFromMicInput
 		|FMODMicStart
 		|FMODMicStop
+	+gmSDL
+		|dllSDL_init
+		|gmSDL_init
+		|gmSDL_musLoad
+		|gmSDL_musPlay
+		|gmSDL_close
+		|gmSDL_windowCreate
+		|gmSDL_windowTitleSet
+		|gmSDL_windowTitleGet
+		|gmSDL_windowClose
+		|gmSDL_spriteLoad
+		|gmSDL_spriteDraw
+		|gmSDL_windowUpdate
+		|gmSDL_windowGetX
+		|gmSDL_windowSetPos
+		|gmSDL_windowGetY
 +VISUALISE
 	|snapinstance
 	|visualise2
