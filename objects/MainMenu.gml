@@ -17,10 +17,14 @@ if variable_global_exists('__init') {
 if global.__init=1 {
 LoadFMOD()
 FMODinit(100,1)
+//dllSDL_init()
+//gmSDL_init(2)
 }
 } else {
 LoadFMOD()
 FMODinit(100,1)
+//dllSDL_init()
+//gmSDL_init(2)
 global.__init=0
 global.played_from_arg=0
 }
