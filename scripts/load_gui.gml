@@ -161,6 +161,7 @@ global.__img_front=sprite_add(filename_path(argument0)+ini_read_string('Default'
 MainMenu.useimgforback=ini_read_real('Interface','useimgforback',0)
 
 with backobj instance_destroy()
+with monoster instance_destroy()
 mybutton=instance_create(0,0,backobj)
 
 global.__img_back=sprite_add(filename_path(argument0)+ini_read_string('Default','imgback','back.png'),1,0,0,0,0)
@@ -169,6 +170,8 @@ mybutton.backx=ini_read_real('Interface','backx',0)
 mybutton.backy=ini_read_real('Interface','backy',0)
 mybutton.backw=ini_read_real('Interface','backw',480)
 mybutton.backh=ini_read_real('Interface','backh',80)
+
+mybutton=instance_create(0,0,monoster)
 mybutton.usemonoster=ini_read_real('Interface','usemonoster',0)
 mybutton.monosterimg=sprite_add(filename_path(argument0)+ini_read_string('Interface','monosterimg','monoster.png'),2,0,0,0,0)
 mybutton.monosterx=ini_read_real('Interface','monosterx',0)
@@ -192,18 +195,23 @@ i+=1
 mybutton=instance_create(0,0,settingsobj)
 mybutton.x=ini_read_real('Interface','butsetx',336)
 mybutton.y=ini_read_real('Interface','butsety',336)
-/*mybutton.custom=ini_read_real('Interface','usecustomsettings',0)
-mybutton.custombgimg=sprite_add(filename_path(argument0)+ini_read_string('Interface','customstngbg','settings_tabs_bg.png'),1,0,0,0,0)
-mybutton.customimg=sprite_add(filename_path(argument0)+ini_read_string('Interface','customstngfg','settings_tabs.png'),1,0,0,0,0)
-mybutton.customx=ini_read_real('Interface','setcustomx',80)
-mybutton.customy=ini_read_real('Interface','setcustomy',144)
-mybutton.customw=ini_read_real('Interface','setcustomw',206)
-mybutton.customh=ini_read_real('Interface','setcustomh',132)
-mybutton.custombgx=ini_read_real('Interface','setcustombgx',10)
-mybutton.custombgy=ini_read_real('Interface','setcustombgy',144)
-mybutton.custombgw=ini_read_real('Interface','setcustombgw',460)
-mybutton.custombgh=ini_read_real('Interface','setcustombgh',156)
-*/
+
+
+
+/*****************************************PLAYLIST************************************/
+//for playlist manager gmSDL using;
+globalvar __pl_window;
+
+var _sec;_sec='PLMgr'
+mybutton=addmusicbutton
+mybutton.pl_drawtop=ini_read_real(_sec,'listDrawTopImg',0)
+mybutton.pl_topimg=filename_path(argument0)+ini_read_string(_sec,'listTopImg','playlist\pl_front.png')
+mybutton.pl_drawback=ini_read_real(_sec,'listDrawBackImg',0)
+mybutton.pl_backimg=filename_path(argument0)+ini_read_string(_sec,'listBackImg','playlist\pl_back.png')
+
+
+
+
 global.plrwidth=ini_read_real('Interface','playerW',480)
 if global.plrwidth=0 global.plrwidth=display_get_width()
 global.plrheight=ini_read_real('Interface','playerH',80)
