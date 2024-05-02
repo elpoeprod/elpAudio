@@ -19,6 +19,11 @@ pressed=1
 } else {pressed=0 hh=0}
 }
 
+if variable_global_exists("__pl_window") {
+if __pl_window!=-1 gmSDL_windowSetPos(__pl_window,window_get_x(),window_get_y()+window_get_height())
+}
+
+
 if __stick_to_edges {
 ///WINDOW STICKS TO EDGES
 if window_get_x()<16 window_set_position(0,window_get_y())
