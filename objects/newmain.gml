@@ -25,6 +25,7 @@ get_theme(global.themepath)
 draw_set_circle_precision(64)
 window_set_icon(icon_add(global.__progdir+'data\ico.ico'))
 window_set_taskbar_icon(icon_add(global.__progdir+'data\ico.ico'))
+file_drag_enable(1)
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -33,3 +34,10 @@ applies_to=self
 */
 //view_stabilize()
 global.list_size=ds_list_size(global.list)
+#define Other_3
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+gmSDL_close()
