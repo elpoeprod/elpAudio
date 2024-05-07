@@ -1,5 +1,5 @@
 # elpAudio
-elpAudio - simple audio player using FMOD, that supports custom themes, music files (`.mp3, .midi, .wav, .ogg, .flac, .opus`), tracker music (`.mod, .xm, .s3m, .it`) and other sound types (`.wasd, .etm, .mus`).
+elpAudio - simple audio player using FMOD, made on Game Maker 8.2, that supports custom themes, music files (`.mp3, .midi, .wav, .ogg, .flac, .opus`), tracker music (`.mod, .xm, .s3m, .it`) and other sound types (`.wasd, .etm, .mus`).
 
 **Now elpAudio have its own discord server - you can <a href="https://discord.gg/n64mcGT6Sr">click here</a> to join it!**
 
@@ -13,6 +13,9 @@ Send your message to telegram: **@cactusquid**, or on e-mail: **elpoepstudios@gm
 -go to releases, download latest version of elpAudio and open the elpAudio.exe. Enjoy the "new **WinAmp**"!
 
 ## To open source code of elpAudio you need:
+  - SDL, SDL_image, SDL_ttf and SDL_mixer DLLs
+
+
 ### First way
 You need to open "Game Maker 8.2 Setup.exe" file in that repository.
 Then download all of the files in the repository and click on "elpAudio.gm82". Done! Now you can do anything.
