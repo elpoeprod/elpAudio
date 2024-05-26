@@ -8,12 +8,6 @@ image_speed=0
 sprite_index=global.__ico_admus
 draw=0
 
-button[0]='Add file...'
-button[1]='Add folder...'
-button[2]='Add from internet...'
-button[3]='Clear playlist'
-buttons=4
-
 add=0
 click=0
 
@@ -77,16 +71,13 @@ action_id=603
 applies_to=self
 */
 draw_self()
-addx=sprite_width
-maxx=max(string_width(button[0]),string_width(button[1]),string_width(button[2]),string_width(button[3]))+4
-addy=60
 
 if click=1 and alarm[0]<30 alarm[0]=1
 
 if draw=1 {
-select=show_menu('Add file|Add folder|Add URL|Show files|Clear playlist|Show Playlist',-1)
+select=show_menu('Add file|Add folder|Add URL|Show files',-1)
 if select=0 {
-file=get_open_filename('All supported files|*.mp3;*.ogg;*.wav;*.m4v;*.mp3;*.opus;*.mp2;*.3gp;*.mod;*.xm;*.etm;*.stm;*.s3m;*.it;*.mus;*.wasd;*.flac','')
+file=get_open_filename('All supported files|*.aiff;*.asf;*.asx;*.dls;*.flca;*.fsb;*.it;*.m3u;*.midi;*.mpd;*.mp3;*.mp3;*.ogg;*.opus;*.pls;*.s3m;*.vag;*.wav;*.wax;*.wma;*.xm;*.raw;*.iff','')
 if file='' nothing=1 else ds_list_add(global.list,file)
 }
 if select=1 {
@@ -98,23 +89,36 @@ get_music_from(folder+'\')
 }
 if select=2 {
 myurl=get_string('Type in the URL to add music from','https://elpoepgames.site/elpAudio/music/welcome.mp3')
-if myurl='' nothing=1 else ds_list_add(global.list,myurl)
+if myurl='' nothing=1 else {
+_connect=httprequest_create()
+httprequest_connect(_connect,httprequest_urlencode(myurl,0),0)
+mfile=buffer_create()
+while true {
+    httprequest_update(_connect);
+    st = httprequest_get_state(_connect);
+    if st=4 or st=5 {
+        break;
+    }
+    sleep(10);
+}
+if st=5 {
+    show_message("Internet-download failed.#Your url: "+myurl);
+} else {
+    //show_message("Downloading succeeded.");
+    httprequest_get_message_body_buffer(_connect,mfile)
+    var f;f=working_directory+'\music_examples\http_'+string(irandom_range(10000,100000))+filename_ext(myurl)
+    buffer_save(mfile,f)
+    ds_list_add(global.list,f)
+}
+buffer_destroy(mfile)
+httprequest_destroy(_connect)
+}
 }
 if select=3 {
 execute_program('explorer.exe','/root,"'+global.dirr+'"',0)
 }
-if select=4 {
+/*if select=4 {
 ds_list_clear(global.list)
-}
-if select=5 {
-//execute_program(global.__progdir+'data\elpAudioList.exe','',0)
-__pl_window=gmSDL_windowCreate(window_get_x(),window_get_y()+window_get_height(),global.plrwidth,global.plrheight,0)
-gmSDL_windowTitleSet(__pl_window,"Playlist Manager")
-spr=gmSDL_spriteLoad(__pl_window,"themes\winamp_modern\playlist\pl_front.png",0)
-}
+}*/
 draw=0
-}
-if __pl_window!=-1 {
-gmSDL_windowUpdate(__pl_window)
-gmSDL_spriteDraw(__pl_window,spr,0,0)
 }
