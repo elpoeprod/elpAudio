@@ -4,7 +4,7 @@ global.dirr=string_replace_all(argument0,"/","\")
 findfile=0
 if directory_exists(global.dirr) {
 i=1
-exts='*.*'//mp3;*.wav;*.ogg;*.flac;*.aif;*.iff;*.opus;*.mod;*.xm;*.it;*.s3m;*.stm;*etm;*.mus;*.mp2;*.ogv;*.m3u;*.m3u8'
+exts='*.*'//mp3;*.wav;*.ogg;*.flac;*.aiff;*.iff;*.opus;*.mod;*.xm;*.it;*.s3m;*.mp2;*.ogg;*.m3u;'
 
 // ALL FILES
 mus[0]=file_find_first(global.dirr+exts,findfile);
