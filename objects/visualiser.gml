@@ -8,12 +8,15 @@ dir=random(1000)
 xx=0
 myh=0
 turnon=0
+
+wait=0
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
+if wait>0 wait-=1 else wait=2
 if global.play myinst=global.playing
 else myinst=noone
 if !surface_exists(surf1) {
@@ -48,7 +51,8 @@ draw_set_color(global.visbgcol)
 draw_set_alpha(1)
 
 if usebgvisimg==0 {
-draw_rectangle(x,y,x+width,y+height,0)
+n=1
+//draw_rectangle(x,y,x+width,y+height,0)
 } else {
 if sprite_exists(visbgimg) and visbgimg>-1 {
 draw_sprite_stretched_ext(visbgimg,0,x+visbgx,y+visbgy,visbgw,visbgh,c_white,1)
@@ -65,17 +69,18 @@ surf2=surface_create(width,height)
 }
 var hhh;hhh=5
 if global.play {
-switch (__visualiser) {
-    case 0: draw_surface_ext(surf1,x,y,1,1,0,c_white,1);break;
-    case 1: visualise2(myinst,x+width/2,y+height/2,width,height);break;
-    case 2: visualise3(myinst,x,y,width,height);break;
-    case 3: visualise4(myinst,x,y,width,height);break;
-    case 4: visualise5(myinst,x,y,width,height);break;
-    case 5: visualise6(myinst,x,y,width,height);break;
-//    case 5: visualise6(x,y);break;
-    default: break;
-    }
+if __visualiser=0 draw_surface_ext(surf1,x,y,1,1,0,c_white,1)
+if __visualiser=1 visualise2(myinst,x+width/2,y+height/2,width,height)
+if __visualiser=2 visualise3(myinst,x,y,width,height)
+if __visualiser=3 visualise4(myinst,x,y,width,height)
+if __visualiser=4 visualise5(myinst,x,y,width,height)
+if __visualiser=5 visualise6(myinst,x,y,width,height)
+i=0 repeat(global.customvisuals) {
+if __visualiser=i+6 execute_string(global.vis[i])//(working_directory+'\visualisers\vis_'+string(i)+'.gml')
+i+=1
 }
+}
+
 if usefgvisimg {
 if sprite_exists(visfgimg) and visfgimg>-1 {
 draw_sprite_stretched_ext(visfgimg,0,x+visfgx,y+visfgy,visfgw,visfgh,c_white,1)
