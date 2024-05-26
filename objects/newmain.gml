@@ -40,4 +40,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-gmSDL_close()
+if variable_global_exists('__sdl_init') gmSDL_close()
+FMODfree()
+UnloadFMOD()
