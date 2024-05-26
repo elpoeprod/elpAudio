@@ -1,0 +1,5 @@
+__visual_freq - visualiser bars, used in default visualisers
+__speed - text speed, used for floating text thing
+room_width, or global.pwidth - elpAudio player width (NOT VISUALISER!)
+room_height, or global.pheight - elpAudio player height (NOT VISUALISER!)
+__visualiser - chosen visualiser number (starts with 0, so 6th visualiser is 5)
