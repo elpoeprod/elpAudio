@@ -21,15 +21,19 @@ applies_to=self
 */
 ///OLD FLOAT TEXT
 if global.oldfloat==1 and global.play {
-        str=ds_list_find_value(global.list,global.current)
         if floatdrawtime1 { // Draw with time
             drawstr=string_repeat(string_repeat('('+string(global.current+1)+'/'+string(global.list_size)+') ',drawcursong)+global.trackname+' ('+current_time_format2(global.songlength)+')   ***   ',6)
         } else { // Draw without time
             drawstr=string_repeat(string_repeat('('+string(global.current+1)+'/'+string(global.list_size)+') ',drawcursong)+global.trackname+'   ***   ',6)
         }
-mystr=string_copy(drawstr,1+stri,30)
+/*mystr=string_copy(drawstr,1+stri,30)
 stri+=1
 if stri>string_length(drawstr)/2 stri=0
+*/
+draw_set_font(global.__fon_vis)
+mystr=drawstr//string_copy(drawstr,1,64)
+xx-=string_width('A')
+if xx<-string_width(drawstr)/2 xx=0//oldfloatw+string_width('A')
 }
 alarm[0]=(((15/__speed)*(max(fps,1)/60))*20)
 #define Step_0
