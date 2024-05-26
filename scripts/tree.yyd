@@ -182,10 +182,23 @@
 		|gmSDL_windowClose
 		|gmSDL_spriteLoad
 		|gmSDL_spriteDraw
+		|gmSDL_spriteGetImages
 		|gmSDL_windowUpdate
 		|gmSDL_windowGetX
 		|gmSDL_windowSetPos
 		|gmSDL_windowGetY
+		|gmSDL_drawButton
+		|gmSDL_windowBorderSet
+		|gmSDL_windowBorderGet
+		|gmSDL_mouseGetX
+		|gmSDL_mouseGetY
+		|gmDLL_error
+		|gmDLL_errorGet
+		|gmSDL_spriteGetWidth
+		|gmSDL_spriteGetHeight
+		|gmSDL_windowGetBorderSize
+		|gmSDL_drawRectangle
+		|gmSDL_windowSetShape
 +VISUALISE
 	|snapinstance
 	|visualise2
@@ -196,6 +209,16 @@
 	|visualise7
 	|SNAPWAVEENTRY
 	|SNAPSPECENTRY
+	|GetWaveBuffer
+	|InitVisVars
+	|VisSetX
+	|ea_do_command
+	|GetSpecBuffer
+	|SetBlendMode
+	|ClearVisCanvas
+	|DrawLinePrec
+	|SetVisColorAlpha
+	|SetVis
 +GUI
 	|get_theme
 	|load_gui
@@ -208,6 +231,7 @@
 	|loadlist
 	|ngame_end
 	|read_wh
+	|make_captions
 +elpaudio
 	|current_time_format
 	|current_time_format2
@@ -233,3 +257,6 @@
 +lini
 	|lini_open
 	|lini_read_key
+|fname_path
+|ini_rs
+|ereal
