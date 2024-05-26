@@ -16,4 +16,3 @@ did=0
 global.stopped=0
 global.paused=0
 global.songlength=get_song_length(song)
-//if mylastsong!=0 FMOD
