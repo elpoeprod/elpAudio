@@ -3,7 +3,8 @@ elpAudio - simple audio player using FMOD, made on Game Maker 8.2, that supports
 
 **Now elpAudio have its own discord server - you can <a href="https://discord.gg/n64mcGT6Sr">click here</a> to join it!**
 
-For the moment elpAudio supports only Windows systems. You can try run elpAudio through WINE on Linux, but this can work horrible.
+For the moment elpAudio supports only Windows systems. 
+elpAudio on Linux WINE works well if running on WINE desktop
 
 ## Do you have a bug? Or you just want to help the project, ask a question or give an idea? 
 Send your message to telegram: **@cactusquid**, or on e-mail: **elpoepstudios@gmail.com** 
