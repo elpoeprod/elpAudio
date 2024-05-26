@@ -28,8 +28,6 @@ full=!full
 }
 if button=2 {
 if global.play mus_stop()
-FMODfree()
-with newmain settings_save()
 ngame_end()
 }
 #define Mouse_10
