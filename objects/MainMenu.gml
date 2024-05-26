@@ -4,6 +4,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+///INITIALISER
 //if !variable_global_exists('list') global.list=ds_list_create()
 
 did=0
@@ -13,18 +14,23 @@ stri=0
 alarm[0]=10
 alarm[1]=10
 
+cwait=360
+
+xftime=1
+yftime=1
+
 if variable_global_exists('__init') {
 if global.__init=1 {
 LoadFMOD()
 FMODinit(100,1)
 //dllSDL_init()
-//gmSDL_init(2)
+//gmSDL_init(0,1,0)
 }
 } else {
 LoadFMOD()
 FMODinit(100,1)
-//dllSDL_init()
-//gmSDL_init(2)
+///dllSDL_init()
+///gmSDL_init(0,1,2)
 global.__init=0
 global.played_from_arg=0
 }
@@ -52,6 +58,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+///MESSAGE BOX POS
 message_position(window_get_x(),window_get_y()+window_get_height())
 alarm[1]=15
 #define Step_0
@@ -61,12 +68,21 @@ action_id=603
 applies_to=self
 */
 ///CAPTION
+
 if !__enablefloat {
-if global.play=0 room_caption='elpAudio '+get_version() else {
-//if file_is_tracker(global.thesong)
-//room_caption='elpAudio '+get_version()+' - PLAYING ('+string(global.current+1)+'/'+string(ds_list_size(global.list))+')'
-//else
-room_caption='['+current_time_format(FMODInstanceGetPosition(global.playing)*global.songlength)+' / '+current_time_format(global.songlength)+'] elpAudio '+get_version()+' - PLAYING ('+string(global.current+1)+'/'+string(ds_list_size(global.list))+')'
+if global.play=0 room_caption=make_captions(__customcaption_idle) else {
+
+if !__changecaption {
+room_caption=make_captions(__customcaption_play)
+} else {
+if cwait>0 cwait-=1*(60/max(fps,1)) else cwait=__captionchangespd*2
+if cwait>=__captionchangespd {
+room_caption=make_captions(__customcaption_ch1)
+} else {
+room_caption=make_captions(__customcaption_ch2)
+}
+}
+
 }
 }
 if window_get_taskbar_caption()!=room_caption
@@ -78,8 +94,8 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-///MOUSE GRABBING WINDOW
-mouse_grab()
+///!MOUSE GRABBING WINDOW
+//mouse_grab()
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -108,8 +124,6 @@ applies_to=self
 */
 if keyboard_check_pressed(vk_f4) {
 if global.play mus_stop()
-FMODfree()
-settings_save()
 ngame_end()
 }
 #define Draw_0
@@ -120,7 +134,7 @@ applies_to=self
 */
 ///Draw TOP MENU
 
-view_stabilize()
+//view_stabilize()
 if global.play {
 if FMODInstanceGetPosition(global.playing)>=0.999 and FMODSoundGetLoopCount(global.musicsound)>-1 {
 if __stopsongafter mus_stop() else {
@@ -171,5 +185,12 @@ mus_play(ds_list_find_value(global.list,global.current))
 }
 draw_set_color(c_white)
 if keyboard_check_pressed(vk_f1) {
-show_message(string_ext("Now playing: {0}#Song length:{1}#Frequency:{2}#Song number:{3}/{4}#",global.trackname,current_time_format(FMODSoundGetLength(global.musicsound)),string(FMODInstanceGetFrequency(global.playing)/1000)+"KHz",global.current+1,ds_list_size(global.list)))
+if !keyboard_check(vk_shift) show_message(string_ext("Now playing: {0}#Song length:{1}#Frequency:{2}#Song number:{3}/{4}#Volume:{5}",global.trackname,current_time_format(FMODSoundGetLength(global.musicsound)),string(FMODInstanceGetFrequency(global.playing)/1000)+"KHz",global.current+1,ds_list_size(global.list),global.volume))
+else {
+var i,list;i=0;list=''; repeat(ds_list_size(global.list)) {list+=string(i+1)+'. '+ds_list_find_value(global.list,i)+'#' i+=1}
+message_size(global.plrwidth,string_height(list))
+show_message(
+string_ext("Queue:{0}",
+list
+))}
 }
