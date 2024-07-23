@@ -1,5 +1,5 @@
 # NOT BUILDABLE ANYMORE. PROJECT HAS BEEN MOVED
-Project has been moved [on this site](https;//github.com/elpaudio/elpAudio) and this repo will not be updated nor buildable anymore.
+Project has been moved [on this site](https://github.com/elpaudio/elpAudio) and this repo will not be updated nor buildable anymore.
 
 # elpAudio
 elpAudio - simple audio player using FMOD, made on Game Maker 8.2, that supports custom themes, music files (`.mp3, .midi, .wav, .ogg, .flac, .opus`), tracker music (`.mod, .xm, .s3m, .it`) and other types (`.m3u,.m3u8,.pls,.fsb,.mp2,.wma`).
