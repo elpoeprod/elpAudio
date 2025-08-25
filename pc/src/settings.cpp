@@ -2,15 +2,21 @@
 
 eaSettings_t *eaSettings;
 
+eaTheme_t *eaTheme;
+
 void initSettings() {
     eaSettings=new eaSettings_t;
     eaSettings->w=480;
     eaSettings->h=80;
     eaSettings->current=0;
     eaSettings->loop=-1;
-    eaSettings->btSprite[BUTTON_PLAY]=sprite::add("themes/default/butplay.png",2,0,0);
-    eaSettings->btSprite[BUTTON_STOP]=sprite::add("themes/default/butstop.png",2,0,0);
-    eaSettings->btSprite[BUTTON_PAUSE]=sprite::add("themes/default/butpause.png",2,0,0);
-    eaSettings->btSprite[BUTTON_PREV]=sprite::add("themes/default/butprev.png",2,0,0);
-    eaSettings->btSprite[BUTTON_NEXT]=sprite::add("themes/default/butnext.png",2,0,0);
+
+    eaTheme=new eaTheme_t;
+    eaTheme->path="themes/default/";
+    eaTheme->bt[BUTTON_PLAY].spr=  sprite::add(eaTheme->path+"butplay.png",   2,0,0);
+    eaTheme->bt[BUTTON_STOP].spr=  sprite::add(eaTheme->path+"butstop.png",   2,0,0);
+    eaTheme->bt[BUTTON_PAUSE].spr= sprite::add(eaTheme->path+"butpause.png",  2,0,0);
+    eaTheme->bt[BUTTON_PREV].spr=  sprite::add(eaTheme->path+"butprev.png",   2,0,0);
+    eaTheme->bt[BUTTON_NEXT].spr=  sprite::add(eaTheme->path+"butnext.png",   2,0,0);
+    eaTheme->bt[BUTTON_ADDMUS].spr=sprite::add(eaTheme->path+"butaddmus.png", 2,0,0);
 }

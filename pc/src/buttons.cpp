@@ -7,15 +7,17 @@ button(btStop)
 button(btPause)
 button(btNext)
 button(btPrev)
+button(btAddMusic)
 
 #undef button
 
 
 void initButton() {
-    btPlay=     object::add(eaSettings->btSprite[BUTTON_PLAY]   ,nullptr);
-    btStop=     object::add(eaSettings->btSprite[BUTTON_STOP]   ,nullptr);
-    btPause=    object::add(eaSettings->btSprite[BUTTON_PAUSE]  ,nullptr);
-    btPrev=     object::add(eaSettings->btSprite[BUTTON_PREV]   ,nullptr);
-    btNext=     object::add(eaSettings->btSprite[BUTTON_NEXT]   ,nullptr);
+    btPlay=     object::add(eaTheme->bt[BUTTON_PLAY].spr   ,nullptr);
+    btStop=     object::add(eaTheme->bt[BUTTON_STOP].spr   ,nullptr);
+    btPause=    object::add(eaTheme->bt[BUTTON_PAUSE].spr  ,nullptr);
+    btPrev=     object::add(eaTheme->bt[BUTTON_PREV].spr   ,nullptr);
+    btNext=     object::add(eaTheme->bt[BUTTON_NEXT].spr   ,nullptr);
+    btAddMusic= object::add(eaTheme->bt[BUTTON_ADDMUS].spr ,nullptr);
     return;
 }
