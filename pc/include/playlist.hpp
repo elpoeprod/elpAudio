@@ -3,6 +3,7 @@
 
 extern std::vector<str> eaPlaylist;
 extern std::vector<str> eaFileFilter;
+extern fname_list eaFilenameFilter;
 
 extern void eaPlaylistAddFile(str file);
 extern void eaPlaylistAddFolder(str folder);
