@@ -8,9 +8,11 @@ extern button(btStop)
 extern button(btPause)
 extern button(btNext)
 extern button(btPrev)
+extern button(btAddMusic)
 
 #undef button
 
+extern GBFont *fntMain;
 extern GBSound *eaCurrentSound;
 
 extern void initButton();
@@ -24,3 +26,4 @@ funcs(btStop)
 funcs(btPause)
 funcs(btPrev)
 funcs(btNext)
+funcs(btAddMusic)
