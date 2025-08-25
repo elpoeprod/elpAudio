@@ -1,3 +1,5 @@
 *.o
 ./*/build/
 pc/elpAudio
+/pc/playlists
+/pc/music_examples
