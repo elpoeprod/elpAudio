@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/elpoep/projects/elpAudio/psp/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
