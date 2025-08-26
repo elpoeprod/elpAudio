@@ -6,29 +6,34 @@
                             a->event_draw=a##_Draw;
 
 GBRoom *rmPlayerMain;
-GBFont *fntMain;
+GBFont *fntMain, *fntVisual;
 
 void eaInit() {
     initSettings();
-    rmPlayerMain=room::add(eaSettings->w,eaSettings->h);
+    rmPlayerMain=room::add(eaTheme->w,eaTheme->h);
     room::camera_setup(rmPlayerMain,0,1,
-                       (GB_CamSetup){0,0,eaSettings->w,eaSettings->h,0},
-                       (GB_CamSetup){0,0,eaSettings->w,eaSettings->h,0},
+                       (GB_CamSetup){0,0,eaTheme->w,eaTheme->h,0},
+                       (GB_CamSetup){0,0,eaTheme->w,eaTheme->h,0},
                        -1,(GB_CamTarget){0,0,0,0});
-    window::set_size(eaSettings->w,eaSettings->h);
+    window::set_size(eaTheme->w,eaTheme->h);
 
     fntMain=font::add("themes/sourcesans.ttf",12);
+	fntVisual=font::add("themes/clacon2.ttf",16);
 
     draw::set_font(fntMain);
 
     room::current(rmPlayerMain);
+
     initButton();
-    InitObject(btPrev,      0,  16)
-    InitObject(btStop,      32, 16)
-    InitObject(btPlay,      64, 16)
-    InitObject(btPause,     96, 16)
-    InitObject(btNext,      128,16)
-    InitObject(btAddMusic,  288,32)
+    InitObject(btPrev,			eaTheme->bt[BUTTON_PREV].x,		eaTheme->bt[BUTTON_PREV].y)
+    InitObject(btStop,			eaTheme->bt[BUTTON_STOP].x,		eaTheme->bt[BUTTON_STOP].y)
+    InitObject(btPlay,			eaTheme->bt[BUTTON_PLAY].x,		eaTheme->bt[BUTTON_PLAY].y)
+    InitObject(btPause,			eaTheme->bt[BUTTON_PAUSE].x,	eaTheme->bt[BUTTON_PAUSE].y)
+    InitObject(btNext,			eaTheme->bt[BUTTON_NEXT].x,		eaTheme->bt[BUTTON_NEXT].y)
+    InitObject(btAddMusic,		eaTheme->bt[BUTTON_ADDMUS].x,	eaTheme->bt[BUTTON_ADDMUS].y)
+	InitObject(objFloatText,	eaTheme->bt[OBJECT_FLOAT_TEXT].x,	eaTheme->bt[OBJECT_FLOAT_TEXT].y)
+	InitObject(objVisualiser,	eaTheme->bt[OBJECT_VISUALISER].x,	eaTheme->bt[OBJECT_VISUALISER].y)
+	InitObject(btChangeVis,		eaTheme->bt[BUTTON_CHANGE_VIS].x,	eaTheme->bt[BUTTON_CHANGE_VIS].y)
     initPlaylist();
 
 }
