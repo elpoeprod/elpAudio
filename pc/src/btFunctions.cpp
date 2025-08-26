@@ -73,7 +73,6 @@ void btStop_Draw(GBObject *self) {
             audio::set_pos(eaCurrentSound,0);
         }
     }
-    if(eaCurrentSound!=nullptr) draw::text_rt(60,60,eaCurrentSound->tag["artist"]);
     return;
 }
 
@@ -175,4 +174,180 @@ void btAddMusic_Draw(GBObject *self) {
             default: break;
         }
     }
+}
+
+
+GBSurface *floatsurf;
+GBText *floattext;
+int mycurrent=-1;
+float floatx=0;
+int waittime=0;
+
+void objFloatText_Create(GBObject *self) {
+	self->image_index=0;
+	self->image_speed=0;
+	draw::set_font(fntVisual);
+	draw::color_sdl(col::lime);
+	floatsurf=surface::add(128,32);
+	floattext=new GBText("WELCOME!");
+	draw::set_font(fntMain);
+}
+
+void objFloatText_Step(GBObject *self) {
+	if(eaPlayerState==ea_state::none) {
+		//nothing
+	} else {
+		if(mycurrent!=eaSettings->current) {
+			mycurrent=eaSettings->current;
+			var mystr=eaCurrentSound->tag["artist"]+" - "+eaCurrentSound->tag["title"];
+			if(mystr==" - ") mystr=file::fname(eaCurrentSound->fname);
+			draw::set_font(fntVisual);
+			*floattext=mystr;
+			draw::set_font(fntMain);
+			floatx=-6;
+			waittime=0;
+		}
+	}
+	if(floattext->surf->w>floatsurf->w) {
+		if(waittime<30) waittime++; else {
+			if(floatx<floattext->surf->w+10) floatx++;
+			else floatx=-floatsurf->w-10;
+		}
+	}
+	return;
+}
+
+void objFloatText_Draw(GBObject *self) {
+	surface::target_set(floatsurf);
+		draw::color_sdl(col::black);
+		draw::rect(0,0,floatsurf->w,floatsurf->h,0);
+		draw::set_text_align(0,0.5);
+		draw::color_sdl(col::lime);
+		draw::text(-floatx,floatsurf->h/2.f,floattext);
+		draw::color_sdl(col::white);
+	surface::target_reset();
+
+	draw::sprite(self->spr,0,self->x,self->y,1,1,0);
+	draw::surface(floatsurf,self->x,self->y,1,1,0,col::white);
+	draw::sprite(self->mask,0,self->x,self->y,1,1,0);
+}
+
+GBSurface *vissurf;
+GBSurface *addsurf;
+
+void objVisualiser_Create(GBObject *self) {
+	vissurf=surface::add(eaTheme->visW,eaTheme->visH);
+	addsurf=surface::add(eaTheme->visW,eaTheme->visH);
+	surface::target_set(vissurf);
+	draw::color_sdl(col::black);
+	draw::rect(0,0,vissurf->w,vissurf->h,0);
+	draw::color_sdl(col::white);
+	surface::target_reset();
+	surface::target_set(addsurf);
+	draw::color_sdl(col::black);
+	draw::rect(0,0,vissurf->w,vissurf->h,0);
+	draw::color_sdl(col::white);
+	surface::target_reset();
+	return;
+}
+
+void objVisualiser_Step(GBObject *self) {
+
+	return;
+}
+
+void vis1() {
+	surface::target_set(vissurf);
+	draw::color_sdl(col::black);
+	draw::rect(0,0,vissurf->w,vissurf->h,0);
+	draw::color_sdl(col::white);
+	int i=0;
+	var repeats=50;
+	float mymul=float(vissurf->w)/repeats;
+	repeat(repeats) {
+		draw::line(i*mymul,vissurf->h-(audio::get_fft(eaCurrentSound,math::floor(i*2))/256)*vissurf->h,(i+1)*mymul,
+				   vissurf->h-(audio::get_fft(eaCurrentSound,(i+1)*2)/256)*vissurf->h);
+		i++;
+	}
+	surface::target_reset();
+}
+
+void vis2() {
+	surface::target_set(vissurf);
+	draw::color_sdl(col::black);
+	draw::rect(0,0,vissurf->w,vissurf->h,0);
+	draw::color_sdl(col::white);
+	int i=0;
+	int repeats=50;
+	repeat(repeats) {
+		float mymul=float(vissurf->w)/repeats;
+		draw::line(i*mymul,vissurf->h/2.f-audio::get_wave(eaCurrentSound,i*2)*32,(i+1)*mymul,
+				   vissurf->h-audio::get_wave(eaCurrentSound,(i+1)*2)*32);
+		i++;
+	}
+	surface::target_reset();
+}
+
+void vis3(GBObject *self) {
+	draw::color_sdl(col::black);
+	draw::rect(self->x,self->y,vissurf->w,vissurf->h,0);
+	draw::color_sdl(col::white);
+
+	surface::clone(vissurf,addsurf,0,0);
+	surface::target_set(vissurf);
+
+	draw::color_sdl(col::black);
+	draw::alpha(0.1);
+	draw::rect(0,0,vissurf->w,vissurf->h,0);
+	draw::alpha(1);
+
+	//draw::surface(addsurf,0,0,1,1,0,(SDL_Color){255,255,255,50});
+
+	draw::color_sdl(col::white);
+	real i=0;
+	var repeats=50;
+	float mymul=float(vissurf->w)/repeats;
+	repeat(repeats) {
+		draw::line(i*mymul,vissurf->h/2.f+audio::get_wave(eaCurrentSound,i*2) * 32,
+				   (i+1)*mymul,vissurf->h/2.f+audio::get_wave(eaCurrentSound,(i+1)*2) * 32);
+		draw::line(i*mymul,-5+vissurf->h/2.f+audio::get_wave(eaCurrentSound,(i+1)*2) * 32,
+				   (i+1)*mymul,-5+vissurf->h/2.f+audio::get_wave(eaCurrentSound,(i+2)*2) * 32);
+		i++;
+	}
+	surface::target_reset();
+}
+
+int visCount=3;
+
+void objVisualiser_Draw(GBObject *self) {
+	switch(eaSettings->lastVisualiser) {
+		case 0: vis1(); break;
+		case 1: vis2(); break;
+		case 2: vis3(self); break;
+		default: break;
+	}
+
+	draw::surface(vissurf,self->x,self->y,1,1,0,col::white);
+
+	return;
+}
+
+void btChangeVis_Create(GBObject *self) {
+	self->image_speed=0;
+	self->image_index=0;
+	return;
+}
+
+void btChangeVis_Step(GBObject *self) {
+
+	return;
+}
+
+void btChangeVis_Draw(GBObject *self) {
+	var state=draw::button(self->x,self->y,self->spr->w,self->spr->h,self->spr,0);
+	if(state.released) {
+		if(eaSettings->lastVisualiser<visCount-1) eaSettings->lastVisualiser++;
+		else eaSettings->lastVisualiser=0;
+	}
+	return;
 }
