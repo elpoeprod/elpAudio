@@ -9,10 +9,14 @@ extern button(btPause)
 extern button(btNext)
 extern button(btPrev)
 extern button(btAddMusic)
+extern button(objFloatText)
+extern button(objVisualiser)
+extern button(btChangeVis)
 
 #undef button
 
 extern GBFont *fntMain;
+extern GBFont *fntVisual;
 extern GBSound *eaCurrentSound;
 
 extern void initButton();
@@ -27,3 +31,6 @@ funcs(btPause)
 funcs(btPrev)
 funcs(btNext)
 funcs(btAddMusic)
+funcs(objFloatText)
+funcs(objVisualiser)
+funcs(btChangeVis)
