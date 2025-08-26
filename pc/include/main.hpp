@@ -15,12 +15,21 @@ extern GBRoom *rmPlayerMain;
 extern void eaInit();
 extern void eaDeinit();
 
-#define BUTTON_PLAY     0
-#define BUTTON_STOP     1
-#define BUTTON_PAUSE    2
-#define BUTTON_PREV     3
-#define BUTTON_NEXT     4
-#define BUTTON_ADDMUS   5
+extern const std::string elpAudio_version;
+
+#define BUTTON_PLAY			0
+#define BUTTON_STOP			1
+#define BUTTON_PAUSE		2
+#define BUTTON_PREV			3
+#define BUTTON_NEXT			4
+#define BUTTON_ADDMUS		5
+#define OBJECT_FLOAT_TEXT	6
+#define FLOAT_BACKGROUND	6
+#define FLOAT_FOREGROUND	7
+#define OBJECT_VISUALISER	8
+#define VISUALISER_BG		8
+#define VISUALISER_FG		9
+#define BUTTON_CHANGE_VIS	10
 
 enum class ea_state {
     none=-1,
