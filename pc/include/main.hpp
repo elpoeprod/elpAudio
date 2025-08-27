@@ -6,7 +6,7 @@
 #include <gamebreaker/gamebreaker.hpp>
 namespace gb=GameBreaker;
 
-extern GBRoom *rmPlayerMain;
+extern gb::GBRoom *rmPlayerMain;
 
 #include "playlist.hpp"
 #include "settings.hpp"
@@ -30,6 +30,13 @@ extern const std::string elpAudio_version;
 #define VISUALISER_BG		8
 #define VISUALISER_FG		9
 #define BUTTON_CHANGE_VIS	10
+#define SLIDER_POSITION		11
+#define SLIDER_POSITION_BG	11
+#define SLIDER_POSITION_FG	12
+#define SLIDER_VOLUME		13
+#define SLIDER_VOLUME_BG	13
+#define SLIDER_VOLUME_FG	14
+#define TOPMENU				15
 
 enum class ea_state {
     none=-1,
