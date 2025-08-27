@@ -34,6 +34,9 @@ void eaInit() {
 	InitObject(objFloatText,	eaTheme->bt[OBJECT_FLOAT_TEXT].x,	eaTheme->bt[OBJECT_FLOAT_TEXT].y)
 	InitObject(objVisualiser,	eaTheme->bt[OBJECT_VISUALISER].x,	eaTheme->bt[OBJECT_VISUALISER].y)
 	InitObject(btChangeVis,		eaTheme->bt[BUTTON_CHANGE_VIS].x,	eaTheme->bt[BUTTON_CHANGE_VIS].y)
+	InitObject(sldPosition,		eaTheme->bt[SLIDER_POSITION].x,		eaTheme->bt[SLIDER_POSITION].y);
+	InitObject(sldVolume,		eaTheme->bt[SLIDER_VOLUME].x,		eaTheme->bt[SLIDER_VOLUME].y);
+	InitObject(objTopMenu,		eaTheme->bt[TOPMENU].x,				eaTheme->bt[TOPMENU].y);
     initPlaylist();
 
 }

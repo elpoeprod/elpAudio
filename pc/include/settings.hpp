@@ -7,6 +7,7 @@ typedef struct eaSettings_t {
     int current;
     int loop;
 	int lastVisualiser;
+	int volume;
 } eaSettings_t;
 
 typedef struct _eaButton_t {
@@ -25,7 +26,9 @@ typedef struct eaTheme_t {
 	int visW,visH,
 		visfgX,visfgY,
 		visfgW,visfgH,
-		visUseBg,visUseFg
+		visUseBg,visUseFg,
+		topMenuW,topMenuH,
+		drawTopMenuImg
 	;
 
     _eaButton_t bt[EA_BUTTONS_MAX];

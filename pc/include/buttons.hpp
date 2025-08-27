@@ -12,6 +12,9 @@ extern button(btAddMusic)
 extern button(objFloatText)
 extern button(objVisualiser)
 extern button(btChangeVis)
+extern button(sldPosition)
+extern button(sldVolume)
+extern button(objTopMenu)
 
 #undef button
 
@@ -34,3 +37,6 @@ funcs(btAddMusic)
 funcs(objFloatText)
 funcs(objVisualiser)
 funcs(btChangeVis)
+funcs(sldPosition)
+funcs(sldVolume)
+funcs(objTopMenu)

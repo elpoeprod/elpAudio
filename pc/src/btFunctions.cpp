@@ -11,6 +11,7 @@ void eaPlayCurrentSong(int song) {
     }
     eaCurrentSound=audio::add(eaPlaylist[song],gb::GB_MUSIC);
     audio::loop(eaCurrentSound,eaSettings->loop);
+	audio::set_vol(eaCurrentSound,eaSettings->volume/128.f);
     audio::get_tags(eaCurrentSound);
     eaPlayerState=ea_state::playing;
     return;
@@ -159,17 +160,24 @@ void btAddMusic_Step(GBObject *self) {
     return;
 }
 
+void eaCallbackAddFile() {
+	eaPlaylistAddFile(file::get_fname(eaFilenameFilter,"Add music to the playlist..."));
+}
+
+void eaCallbackAddFolder() {
+	eaPlaylistAddFolder(file::get_folder("Add a folder to the playlist..."));
+}
+
 void btAddMusic_Draw(GBObject *self) {
     var state=draw::button(self->x,self->y,self->spr->w,self->spr->h,self->spr,0);
     if(state.released) {
         switch(state.button) {
             case mb::left: {
-                eaPlaylistAddFile(file::get_fname(eaFilenameFilter,"Add music to the playlist..."));
+                eaCallbackAddFile();
             } break;
             case mb::right: {
-                /*var mymenu=NFD_PopOverMenu_Create();
-                var myaddfile=NFD_PopOverMenu_AddItem(mymenu,"Add file...");
-                NFD_PopOverMenu_Show(mymenu);*/
+                gb::GBPOMItems myitems={{"Add a file...",1000,eaCallbackAddFile},{"Add a folder...",1001,eaCallbackAddFolder}};
+				show::popover_menu(myitems);
             } break;
             default: break;
         }
@@ -293,13 +301,15 @@ void vis3(GBObject *self) {
 	draw::rect(self->x,self->y,vissurf->w,vissurf->h,0);
 	draw::color_sdl(col::white);
 
-	surface::clone(vissurf,addsurf,0,0);
+	//surface::clone(vissurf,addsurf,0,0);
 	surface::target_set(vissurf);
 
-	draw::color_sdl(col::black);
+	draw::color_sdl((SDL_Color){0,0,0,50});
 	draw::alpha(0.1);
 	draw::rect(0,0,vissurf->w,vissurf->h,0);
+
 	draw::alpha(1);
+
 
 	//draw::surface(addsurf,0,0,1,1,0,(SDL_Color){255,255,255,50});
 
@@ -348,6 +358,107 @@ void btChangeVis_Draw(GBObject *self) {
 	if(state.released) {
 		if(eaSettings->lastVisualiser<visCount-1) eaSettings->lastVisualiser++;
 		else eaSettings->lastVisualiser=0;
+	}
+	return;
+}
+
+float mytemppos=0;
+
+void sldPosition_Create(GBObject *self) {
+	return;
+}
+
+void sldPosition_Step(GBObject *self) {
+	return;
+}
+
+str eaCompileTime(double time) {
+	return stringify(std::div(std::div(int(time),60).quot,24).quot)+":"+stringify(std::div(int(time),60).quot%60)+":"+stringify(int(time)%60);
+	//return stringify(time);
+}
+
+void sldPosition_Draw(GBObject *self) {
+	draw::sprite(self->spr,0,self->x,self->y,1,1,0);
+
+	if(math::point_in_rect(mouse::x,mouse::y,self->x,self->y,self->x+self->spr->w,self->y+self->spr->h)) {
+		if(mouse::holding(mb::left)) {
+			mytemppos=math::clamp(mouse::x-self->x,0,self->spr->w);
+			draw::text_rt(1,1,eaCompileTime((mytemppos/self->spr->w)*audio::get_len(eaCurrentSound)));
+		}
+
+		if(mouse::released(mb::left)) {
+			audio::set_pos(eaCurrentSound,(mytemppos/self->spr->w)*audio::get_len(eaCurrentSound));
+		}
+	} else
+		mytemppos=(audio::get_pos(eaCurrentSound)/audio::get_len(eaCurrentSound))*self->spr->w;
+
+	var clampedpos=math::clamp(mytemppos,self->mask->w/2.f,self->spr->w-self->mask->w/2.f);
+	draw::sprite_part(self->spr,1,self->x,self->y,clampedpos,self->spr->h,1,1,0);
+	draw::sprite(self->mask,0,self->x+clampedpos,self->y+self->spr->h/2.f,1,1,0);
+	return;
+}
+
+void sldVolume_Create(GBObject *self) {
+	return;
+}
+
+void sldVolume_Step(GBObject *self) {
+
+	return;
+}
+
+void sldVolume_Draw(GBObject *self) {
+	draw::sprite(self->spr,0,self->x,self->y,1,1,0);
+
+	if(math::point_in_rect(mouse::x,mouse::y,self->x,self->y,self->x+self->spr->w,self->y+self->spr->h)&&mouse::holding(mb::left)) {
+		eaSettings->volume=math::clamp(mouse::x-self->x,0,128*(self->spr->w/128.f));
+		audio::set_vol(eaCurrentSound,eaSettings->volume/128.f);
+	}
+	var myfloat=math::clamp(eaSettings->volume,self->mask->w/2.f,self->spr->w-self->mask->w/2.f);
+
+	draw::sprite_part(self->spr,1,self->x,self->y,myfloat,self->spr->h,1,1,0);
+	draw::sprite(self->mask,0,self->x+myfloat,self->y+self->mask->h/2.f,1,1,0);
+
+	return;
+}
+
+
+
+
+GBText *myTopText;
+int topChanged=0;
+str myTopStr,
+	myLastTopStr;
+
+void objTopMenu_Create(GBObject *self) {
+	myTopStr="elpAudio "+elpAudio_version;
+	myLastTopStr="";
+	myTopText=new GBText(myTopStr);
+	return;
+}
+
+void objTopMenu_Step(GBObject *self) {
+	if(eaPlayerState!=ea_state::none) {
+		myTopStr="("+eaCompileTime(audio::get_pos(eaCurrentSound))+"/"+eaCompileTime(audio::get_len(eaCurrentSound))
+				+") "+eaCurrentSound->tag["artist"]+" - "+eaCurrentSound->tag["title"]+" | elpAudio "+elpAudio_version;
+		if(myLastTopStr!=myTopStr) {
+			myLastTopStr=myTopStr;
+			*myTopText=myTopStr;
+		}
+	}
+	return;
+}
+
+void objTopMenu_Draw(GBObject *self) {
+	if(eaTheme->drawTopMenuImg) {
+		//nothing
+	} else {
+		draw::color_sdl(col::dk_gray);
+		draw::rect(eaTheme->bt[TOPMENU].x,eaTheme->bt[TOPMENU].y,eaTheme->topMenuW,eaTheme->topMenuH,0);
+		draw::color_sdl(col::white);
+		draw::set_font(fntMain);
+		draw::set_text_align(0, 0);
+		draw::text(4,0,myTopText);
 	}
 	return;
 }
