@@ -6,11 +6,15 @@ eaTheme_t *eaTheme;
 
 void settingsImport();
 
+void settingsSave();
+
 void initSettings() {
     eaSettings=new eaSettings_t;
     eaSettings->current=0;
     eaSettings->loop=-1;
 	eaSettings->lastVisualiser=0;
+	eaSettings->shuffle=0;
+	eaSettings->volume=128;
 
     eaTheme=new eaTheme_t;
     eaTheme->path=      "themes/default/theme.ini";
@@ -28,8 +32,8 @@ void initSettings() {
 	eaTheme->bt[VISUALISER_BG].spr=		sprite::add(eaTheme->pathf+"vis_bg.png",		1,0,0);
 	eaTheme->bt[VISUALISER_FG].spr=		sprite::add(eaTheme->pathf+"empty.png",			1,0,0);
 	eaTheme->bt[BUTTON_CHANGE_VIS].spr=	sprite::add(eaTheme->pathf+"butvisual.png",		2,0,0);
-	eaTheme->bt[SLIDER_VOLUME_BG].spr=sprite::add(eaTheme->pathf+"volumeslide.png",	2,0,0);
-	eaTheme->bt[SLIDER_VOLUME_FG].spr=sprite::add(eaTheme->pathf+"volslider.png",		1,0,0);
+	eaTheme->bt[SLIDER_VOLUME_BG].spr=	sprite::add(eaTheme->pathf+"volumeslide.png",	2,0,0);
+	eaTheme->bt[SLIDER_VOLUME_FG].spr=	sprite::add(eaTheme->pathf+"volslider.png",		1,0,0);
 	sprite::set_offset(eaTheme->bt[SLIDER_VOLUME_FG].spr,eaTheme->bt[SLIDER_VOLUME_FG].spr->w/2,eaTheme->bt[SLIDER_VOLUME_FG].spr->h/2);
 
 	eaTheme->bt[SLIDER_POSITION_BG].spr=sprite::add(eaTheme->pathf+"positionslide.png",	2,0,0);
@@ -37,6 +41,11 @@ void initSettings() {
 	sprite::set_offset(eaTheme->bt[SLIDER_POSITION_FG].spr,eaTheme->bt[SLIDER_POSITION_FG].spr->w/2,eaTheme->bt[SLIDER_POSITION_FG].spr->h/2);
 
 	eaTheme->bt[TOPMENU].spr=			sprite::add(eaTheme->pathf+"empty.png",1,0,0);
+
+	eaTheme->bt[BUTTON_LOOP].spr=		sprite::add(eaTheme->pathf+"butloop.png",		3,0,0);
+	eaTheme->bt[BUTTON_SHUFFLE].spr=	sprite::add(eaTheme->pathf+"butsort.png",		3,0,0);
+	eaTheme->bt[BUTTON_SETTINGS].spr=	sprite::add(eaTheme->pathf+"butstng.png",		2,0,0);
+	eaTheme->bt[BUTTON_ONTOP].spr=		sprite::add(eaTheme->pathf+"butalont.png",		2,0,0);
 
 	settingsImport();
 	return;
@@ -48,6 +57,7 @@ void settingsImport() {
 		eaSettings->loop=			ini::read_int(myini,"General","repeatSong",0);
 		eaSettings->lastVisualiser=	ini::read_int(myini,"General","lastVisualiser",0);
 		eaSettings->volume=			ini::read_int(myini,"General","volume",128);
+		eaSettings->shuffle=		ini::read_int(myini,"General","shuffleSongs",0);
 		eaTheme->path=				ini::read_str(myini,"General","themePath","themes/default");
 	ini::close(myini);
 
@@ -71,6 +81,11 @@ void settingsImport() {
 		sprite::replace(eaTheme->bt[SLIDER_POSITION_BG]	.spr,eaTheme->pathf+ini::read_str(myini,"Default","posSlideSprite",	"positionslide.png"),2,0,0);
 		sprite::replace(eaTheme->bt[SLIDER_POSITION_FG]	.spr,eaTheme->pathf+ini::read_str(myini,"Default","posSliderSprite","slider.png"),1,0,0);
 		sprite::set_offset(eaTheme->bt[SLIDER_POSITION_FG].spr,eaTheme->bt[SLIDER_POSITION_FG].spr->w/2,eaTheme->bt[SLIDER_POSITION_FG].spr->h/2);
+
+		sprite::replace(eaTheme->bt[BUTTON_LOOP]		.spr,eaTheme->pathf+ini::read_str(myini,"Default","btLoopSprite","butloop.png"),3,0,0);
+		sprite::replace(eaTheme->bt[BUTTON_SHUFFLE]		.spr,eaTheme->pathf+ini::read_str(myini,"Default","btShuffleSprite","butsort.png"),3,0,0);
+		sprite::replace(eaTheme->bt[BUTTON_SETTINGS].spr,eaTheme->pathf+ini::read_str(myini,"Default","btSettingsSprite","butstng.png"),2,0,0);
+		sprite::replace(eaTheme->bt[BUTTON_ONTOP].spr,eaTheme->pathf+ini::read_str(myini,"Default","btOnTopSprite","butalont.png"),2,0,0);
 
 		eaTheme->bt[BUTTON_PLAY].x		=ini::read_int(myini,"Interface","butplayx",64);
 		eaTheme->bt[BUTTON_PLAY].y		=ini::read_int(myini,"Interface","butplayy",16);
@@ -108,6 +123,18 @@ void settingsImport() {
 		eaTheme->bt[TOPMENU].x			=ini::read_int(myini,"Interface","frontmenux",0);
 		eaTheme->bt[TOPMENU].y			=ini::read_int(myini,"Interface","frontmenuy",0);
 
+		eaTheme->bt[BUTTON_SHUFFLE].x	=ini::read_int(myini,"Interface","butsortx",288);
+		eaTheme->bt[BUTTON_SHUFFLE].y	=ini::read_int(myini,"Interface","butsorty",64);
+
+		eaTheme->bt[BUTTON_SETTINGS].x	=ini::read_int(myini,"Interface","butsetx",288);
+		eaTheme->bt[BUTTON_SETTINGS].y	=ini::read_int(myini,"Interface","butsety",16);
+
+		eaTheme->bt[BUTTON_LOOP].x		=ini::read_int(myini,"Interface","butloopx",304);
+		eaTheme->bt[BUTTON_LOOP].y		=ini::read_int(myini,"Interface","butloopy",48);
+
+		eaTheme->bt[BUTTON_ONTOP].x		=ini::read_int(myini,"Interface","butontopx",304);
+		eaTheme->bt[BUTTON_ONTOP].y		=ini::read_int(myini,"Interface","butontopy",32);
+
 		eaTheme->visUseBg=ini::read_int(myini,"Interface","usebgvisimg",0);
 		if(eaTheme->visUseBg)
 			sprite::replace(eaTheme->bt[VISUALISER_BG]		.spr,eaTheme->pathf+ini::read_str(myini,"Interface","visbgimg",		"vis_bg.png"),1,0,0);
@@ -128,4 +155,16 @@ void settingsImport() {
 
 	ini::close(myini);
 	return;
+}
+
+
+void settingsSave() {
+	var myini=ini::open("settings.ini");
+		ini::write_int(myini,"General","volume",eaSettings->volume);
+		ini::write_int(myini,"General","lastSong",eaSettings->current);
+		ini::write_int(myini,"General","lastVisualiser",eaSettings->lastVisualiser);
+		ini::write_int(myini,"General","shuffleSongs",eaSettings->shuffle);
+		ini::write_int(myini,"General","repeatSong",eaSettings->loop);
+
+	ini::close(myini);
 }

@@ -14,6 +14,10 @@ button(btChangeVis)
 button(sldPosition)
 button(sldVolume)
 button(objTopMenu)
+button(btShuffle)
+button(btLoop)
+button(btSettings)
+button(btOnTop)
 
 #undef button
 
@@ -31,5 +35,10 @@ void initButton() {
 	sldPosition=	object::add(eaTheme->bt[SLIDER_POSITION_BG].spr	,eaTheme->bt[SLIDER_POSITION_FG].spr);
 	sldVolume=		object::add(eaTheme->bt[SLIDER_VOLUME_BG].spr	,eaTheme->bt[SLIDER_VOLUME_FG].spr);
 	objTopMenu=		object::add(eaTheme->bt[TOPMENU].spr,nullptr);
+	btShuffle=		object::add(eaTheme->bt[BUTTON_SHUFFLE].spr		,nullptr);
+	btLoop=			object::add(eaTheme->bt[BUTTON_LOOP].spr		,nullptr);
+	btSettings=		object::add(eaTheme->bt[BUTTON_SETTINGS].spr	,nullptr);
+	btOnTop=		object::add(eaTheme->bt[BUTTON_ONTOP].spr		,nullptr);
+
     return;
 }

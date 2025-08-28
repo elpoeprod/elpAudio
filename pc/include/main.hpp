@@ -37,6 +37,10 @@ extern const std::string elpAudio_version;
 #define SLIDER_VOLUME_BG	13
 #define SLIDER_VOLUME_FG	14
 #define TOPMENU				15
+#define BUTTON_SHUFFLE		16
+#define BUTTON_LOOP			17
+#define BUTTON_SETTINGS		18
+#define BUTTON_ONTOP		19
 
 enum class ea_state {
     none=-1,

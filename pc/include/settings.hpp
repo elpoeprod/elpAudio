@@ -8,6 +8,7 @@ typedef struct eaSettings_t {
     int loop;
 	int lastVisualiser;
 	int volume;
+	int shuffle;
 } eaSettings_t;
 
 typedef struct _eaButton_t {
@@ -40,3 +41,5 @@ extern eaTheme_t *eaTheme;
 extern eaSettings_t *eaSettings;
 
 extern void initSettings();
+
+extern void settingsSave();

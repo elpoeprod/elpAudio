@@ -15,6 +15,10 @@ extern button(btChangeVis)
 extern button(sldPosition)
 extern button(sldVolume)
 extern button(objTopMenu)
+extern button(btShuffle)
+extern button(btLoop)
+extern button(btSettings)
+extern button(btOnTop)
 
 #undef button
 
@@ -40,3 +44,7 @@ funcs(btChangeVis)
 funcs(sldPosition)
 funcs(sldVolume)
 funcs(objTopMenu)
+funcs(btShuffle)
+funcs(btLoop)
+funcs(btSettings)
+funcs(btOnTop)

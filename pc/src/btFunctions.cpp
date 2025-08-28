@@ -115,8 +115,11 @@ void btPrev_Step(GBObject *self) {
 void btPrev_Draw(GBObject *self) {
     var state=draw::button(self->x,self->y,self->spr->w,self->spr->h,self->spr,0);
     if(state.released) {
+		if (eaSettings->shuffle) {
+			eaSettings->current=math::irandom_fresh(eaSettings->current,0,eaPlaylist.size()-1);
+		} else {
         if(eaSettings->current>0) eaSettings->current--; else eaSettings->current=eaPlaylist.size()-1;
-        //puts(("Previous "+stringify(eaSettings->current)).c_str());
+		}
         eaPlayCurrentSong(eaSettings->current);
     }
     return;
@@ -139,8 +142,13 @@ void btNext_Draw(GBObject *self) {
     int pressed=0;
     if(state.released&&!pressed) {
         pressed=1;
-        if(eaSettings->current<eaPlaylist.size()-1) eaSettings->current++; else eaSettings->current=0;
-        //puts(("Next "+stringify(eaSettings->current)).c_str());
+		if (eaSettings->shuffle) {
+			eaSettings->current=math::irandom_fresh(eaSettings->current,0,eaPlaylist.size()-1);
+		} else {
+			if(eaSettings->current<eaPlaylist.size()-1)
+				eaSettings->current++;
+			else eaSettings->current=0;
+		}
         eaPlayCurrentSong(eaSettings->current);
     }
     return;
@@ -327,14 +335,41 @@ void vis3(GBObject *self) {
 	surface::target_reset();
 }
 
-int visCount=3;
+int scrolli=0;
+
+void vis4(GBObject *self) {
+	surface::target_set(vissurf);
+		draw::color_sdl(col::black);
+		draw::rect(0,0,vissurf->w,vissurf->h,0);
+		draw::color_sdl(col::white);
+		int myi=0;
+		int mysize=math::floor((float)vissurf->h/fntMain->size);
+		if(math::point_in_rect(mouse::x,mouse::y,self->x,self->y,self->x+vissurf->w,self->y+vissurf->h)) {
+			if(mouse::wheel_up()) scrolli--;
+			if(mouse::wheel_down()) scrolli++;
+		}
+		scrolli=math::clamp(scrolli,0,eaPlaylist.size()-mysize);
+
+		repeat(mysize) {
+			if(myi+scrolli==eaSettings->current) {
+				draw::color_sdl(col::aqua);
+				draw::rect(0,myi*fntMain->size,vissurf->w-1,fntMain->size,1);
+				draw::color_sdl(col::white);
+			}
+			if(myi+scrolli<eaPlaylist.size()) draw::text_rt(2,5+myi*fntMain->size,stringify(myi+scrolli)+". "+file::fname(eaPlaylist[myi+scrolli]));
+			myi++;
+		}
+	surface::target_reset();
+}
+
+int visCount=4;
 
 void objVisualiser_Draw(GBObject *self) {
 	switch(eaSettings->lastVisualiser) {
 		case 0: vis1(); break;
 		case 1: vis2(); break;
 		case 2: vis3(self); break;
-		default: break;
+		default: vis4(self); break;
 	}
 
 	draw::surface(vissurf,self->x,self->y,1,1,0,col::white);
@@ -446,6 +481,8 @@ void objTopMenu_Step(GBObject *self) {
 			*myTopText=myTopStr;
 		}
 	}
+
+	window::grab(math::point_in_rect(mouse::x,mouse::y,self->x,self->y,self->x+self->spr->w*0.8,self->y+self->spr->h));
 	return;
 }
 
@@ -459,6 +496,79 @@ void objTopMenu_Draw(GBObject *self) {
 		draw::set_font(fntMain);
 		draw::set_text_align(0, 0);
 		draw::text(4,0,myTopText);
+	}
+	return;
+}
+
+
+void btShuffle_Create(GBObject *self) {
+
+	return;
+}
+
+void btShuffle_Step(GBObject *self) {
+
+	return;
+}
+
+void btShuffle_Draw(GBObject *self) {
+	var state=draw::button(self->x,self->y,self->spr->w,self->spr->h,self->spr,eaSettings->shuffle);
+	if(state.released)
+		eaSettings->shuffle=!eaSettings->shuffle;
+	return;
+}
+
+
+void btLoop_Create(GBObject *self) {
+
+	return;
+}
+
+void btLoop_Step(GBObject *self) {
+
+	return;
+}
+
+void btLoop_Draw(GBObject *self) {
+	var state=draw::button(self->x,self->y,self->spr->w,self->spr->h,self->spr,eaSettings->loop);
+	if(state.released) {
+		eaSettings->loop=!eaSettings->loop;
+		audio::set_loops(eaCurrentSound,-eaSettings->loop);
+	}
+	return;
+}
+
+
+void btSettings_Create(GBObject *self) {
+
+	return;
+}
+
+void btSettings_Step(GBObject *self) {
+
+	return;
+}
+
+void btSettings_Draw(GBObject *self) {
+	var state=draw::button(self->x,self->y,self->spr->w,self->spr->h,self->spr,0);
+	return;
+}
+
+
+void btOnTop_Create(GBObject *self) {
+
+	return;
+}
+
+void btOnTop_Step(GBObject *self) {
+
+	return;
+}
+
+void btOnTop_Draw(GBObject *self) {
+	var state=draw::button(self->x,self->y,self->spr->w,self->spr->h,self->spr,0);
+	if(state.released) {
+		window::set_ontop(!window::get_ontop());
 	}
 	return;
 }

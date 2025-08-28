@@ -16,6 +16,8 @@ void eaInit() {
                        (GB_CamSetup){0,0,eaTheme->w,eaTheme->h,0},
                        -1,(GB_CamTarget){0,0,0,0});
     window::set_size(eaTheme->w,eaTheme->h);
+	window::show_borders(0);
+	math::randomize();
 
     fntMain=font::add("themes/sourcesans.ttf",12);
 	fntVisual=font::add("themes/clacon2.ttf",16);
@@ -37,6 +39,10 @@ void eaInit() {
 	InitObject(sldPosition,		eaTheme->bt[SLIDER_POSITION].x,		eaTheme->bt[SLIDER_POSITION].y);
 	InitObject(sldVolume,		eaTheme->bt[SLIDER_VOLUME].x,		eaTheme->bt[SLIDER_VOLUME].y);
 	InitObject(objTopMenu,		eaTheme->bt[TOPMENU].x,				eaTheme->bt[TOPMENU].y);
+	InitObject(btShuffle,		eaTheme->bt[BUTTON_SHUFFLE].x,		eaTheme->bt[BUTTON_SHUFFLE].y)
+	InitObject(btLoop,			eaTheme->bt[BUTTON_LOOP].x,		eaTheme->bt[BUTTON_LOOP].y)
+	InitObject(btSettings,		eaTheme->bt[BUTTON_SETTINGS].x,		eaTheme->bt[BUTTON_SETTINGS].y)
+	InitObject(btOnTop,			eaTheme->bt[BUTTON_ONTOP].x,		eaTheme->bt[BUTTON_ONTOP].y)
     initPlaylist();
 
 }
@@ -46,4 +52,5 @@ void eaInit() {
 void eaDeinit() {
     if(eaCurrentSound!=nullptr) audio::stop(eaCurrentSound);
     eaPlaylistSave("playlists/temp.epl");
+	settingsSave();
 }
