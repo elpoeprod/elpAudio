@@ -22,6 +22,7 @@ void eaPlaylistAddFolder(str folder) {
 void initPlaylist() {
     if(!file::exists("playlists/temp.epl")) eaPlaylistAddFolder("music_examples/");
     else eaPlaylistLoad("playlists/temp.epl");
+	if(eaSettings->current>eaPlaylist.size()-1) eaSettings->current=0;
     return;
 }
 
@@ -45,9 +46,22 @@ void eaPlaylistLoad(str name) {
     if(!file::exists(name)) return;
     var myfile=file::text::open(name,file::fmode::read);
     var plVersion=file::text::read(myfile); //playlist version
+	str myaddfile;
+	str myerrorstr="";
     while(!file::text::eof(myfile)) {
-        eaPlaylist.push_back(file::text::read(myfile));
+		myaddfile=file::text::read(myfile);
+		if(file::exists(myaddfile))
+			eaPlaylist.push_back(myaddfile);
+		else
+			myerrorstr+=myaddfile+"\n";
     }
+    if(myerrorstr!="") {
+		if(eaPlaylist.size()==0) {
+			myerrorstr+="Because of that, files from `music_examples` folder are loaded.";
+			eaPlaylistAddFolder("music_examples/");
+		}
+		show::message("An error occured...","Could not add these files to playlist: \n"+myerrorstr);
+	}
     file::text::close(myfile);
     eaPlaylistCheck();
     return;

@@ -343,10 +343,11 @@ void vis4(GBObject *self) {
 		draw::rect(0,0,vissurf->w,vissurf->h,0);
 		draw::color_sdl(col::white);
 		int myi=0;
+		int myscrollsize=3;
 		int mysize=math::floor((float)vissurf->h/fntMain->size);
 		if(math::point_in_rect(mouse::x,mouse::y,self->x,self->y,self->x+vissurf->w,self->y+vissurf->h)) {
-			if(mouse::wheel_up()) scrolli--;
-			if(mouse::wheel_down()) scrolli++;
+			if(mouse::wheel_up()) scrolli-=myscrollsize;
+			if(mouse::wheel_down()) scrolli+=myscrollsize;
 		}
 		scrolli=math::clamp(scrolli,0,eaPlaylist.size()-mysize);
 
@@ -356,7 +357,7 @@ void vis4(GBObject *self) {
 				draw::rect(0,myi*fntMain->size,vissurf->w-1,fntMain->size,1);
 				draw::color_sdl(col::white);
 			}
-			if(myi+scrolli<eaPlaylist.size()) draw::text_rt(2,5+myi*fntMain->size,stringify(myi+scrolli)+". "+file::fname(eaPlaylist[myi+scrolli]));
+			if(myi+scrolli<eaPlaylist.size()) draw::text_rt(2,5+myi*fntMain->size,stringify(myi+scrolli+1)+". "+file::fname(eaPlaylist[myi+scrolli]));
 			myi++;
 		}
 	surface::target_reset();
