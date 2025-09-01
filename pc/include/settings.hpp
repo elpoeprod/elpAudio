@@ -31,6 +31,10 @@ typedef struct eaTheme_t {
 		topMenuW,topMenuH,
 		drawTopMenuImg
 	;
+	int controlx[3],controly[3];
+	GBSprite *controlspr;
+
+	Uint32 topMenuBgCol,topMenuFgCol;
 
     _eaButton_t bt[EA_BUTTONS_MAX];
 
