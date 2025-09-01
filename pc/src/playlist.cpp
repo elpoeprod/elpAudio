@@ -48,6 +48,7 @@ void eaPlaylistLoad(str name) {
     var plVersion=file::text::read(myfile); //playlist version
 	str myaddfile;
 	str myerrorstr="";
+	var mysize=eaPlaylist.size();
     while(!file::text::eof(myfile)) {
 		myaddfile=file::text::read(myfile);
 		if(file::exists(myaddfile))
@@ -55,7 +56,7 @@ void eaPlaylistLoad(str name) {
 		else
 			myerrorstr+=myaddfile+"\n";
     }
-    if(myerrorstr!="") {
+    if(eaPlaylist.size()==mysize) {
 		if(eaPlaylist.size()==0) {
 			myerrorstr+="Because of that, files from `music_examples` folder are loaded.";
 			eaPlaylistAddFolder("music_examples/");
