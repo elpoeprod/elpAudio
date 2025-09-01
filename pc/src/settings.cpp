@@ -17,8 +17,11 @@ void initSettings() {
 	eaSettings->volume=128;
 
     eaTheme=new eaTheme_t;
-    eaTheme->path=      "themes/default/theme.ini";
-    eaTheme->pathf=  "themes/default/";
+	eaTheme->author="elpoep";
+	eaTheme->name="default";
+	eaTheme->desiredVersion="0.1";
+    eaTheme->path=	"themes/default/theme.ini";
+    eaTheme->pathf=	"themes/default/";
     eaTheme->w=480;
     eaTheme->h=80;
     eaTheme->bt[BUTTON_PLAY].spr=		sprite::add(eaTheme->pathf+"butplay.png",		2,0,0);
@@ -150,8 +153,18 @@ void settingsImport() {
 		eaTheme->topMenuH=ini::read_int(myini,"Interface","frontmenuh",80);
 		eaTheme->drawTopMenuImg=ini::read_int(myini,"Interface","useimgforfront",0);
 
+		eaTheme->controlx[0]=ini::read_int(myini,"Interface","miniguix1",446);
+		eaTheme->controly[0]=ini::read_int(myini,"Interface","miniguiy1",0);
+		eaTheme->controlx[1]=ini::read_int(myini,"Interface","miniguix2",446);
+		eaTheme->controly[1]=ini::read_int(myini,"Interface","miniguiy2",0);
+		eaTheme->controlspr=sprite::add(eaTheme->pathf+ini::read_str(myini,"Default","miniGuiSprite","minigui.png"),6,0,0);
+
+		eaTheme->topMenuBgCol=((ini::read_str(myini,"Interface","frontmenubgcol","dkgray"))=="dkgray") ? 0xA0A0A0 : 0xFFFFFF;
+		eaTheme->topMenuFgCol=((ini::read_str(myini,"Interface","frontmenufgcol","white"))=="white") ? 0xFFFFFF : 0x000000;
+
 		eaTheme->w=ini::read_int(myini,"Interface","playerW",480);
 		eaTheme->h=ini::read_int(myini,"Interface","playerH",80);
+
 
 	ini::close(myini);
 	return;
