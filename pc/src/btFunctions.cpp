@@ -70,7 +70,8 @@ void btStop_Draw(GBObject *self) {
     if(state.released) {
         if(eaPlayerState==ea_state::playing||eaPlayerState==ea_state::paused) {
             eaPlayerState=ea_state::stopped;
-            audio::pause(eaCurrentSound);
+            //audio::stop(eaCurrentSound);
+			audio::pause(eaCurrentSound);
             audio::set_pos(eaCurrentSound,0);
         }
     }
@@ -184,8 +185,10 @@ void btAddMusic_Draw(GBObject *self) {
                 eaCallbackAddFile();
             } break;
             case mb::right: {
-                gb::GBPOMItems myitems={{"Add a file...",1000,eaCallbackAddFile},{"Add a folder...",1001,eaCallbackAddFolder}};
-				show::popover_menu(myitems);
+				eaCallbackAddFolder();
+                //gb::GBPOMItems myitems={{"Add a file...",1000,eaCallbackAddFile},{"Add a folder...",1001,eaCallbackAddFolder}};
+				//show::popover_menu(myitems);
+				//show::popover_menu("pom.glade");
             } break;
             default: break;
         }
@@ -409,7 +412,7 @@ void sldPosition_Step(GBObject *self) {
 }
 
 str eaCompileTime(double time) {
-	return stringify(std::div(std::div(int(time),60).quot,24).quot)+":"+stringify(std::div(int(time),60).quot%60)+":"+stringify(int(time)%60);
+	return gstr::pad(std::div(std::div(int(time),60).quot,24).quot,2)+":"+gstr::pad(std::div(int(time),60).quot%60,2)+":"+gstr::pad(int(time)%60,2);
 	//return stringify(time);
 }
 
@@ -473,6 +476,9 @@ void objTopMenu_Create(GBObject *self) {
 	return;
 }
 
+int grabbed=0,
+	mygrabx=0,mygraby=0;
+
 void objTopMenu_Step(GBObject *self) {
 	if(eaPlayerState!=ea_state::none) {
 		myTopStr="("+eaCompileTime(audio::get_pos(eaCurrentSound))+"/"+eaCompileTime(audio::get_len(eaCurrentSound))
@@ -483,7 +489,13 @@ void objTopMenu_Step(GBObject *self) {
 		}
 	}
 
-	window::grab(math::point_in_rect(mouse::x,mouse::y,self->x,self->y,self->x+self->spr->w*0.8,self->y+self->spr->h));
+	if(math::point_in_rect(mouse::x,mouse::y,self->x-1000*grabbed,self->y-1000*grabbed,self->x+self->spr->w*0.8+1000*grabbed,self->y+self->spr->h+1000*grabbed)) {
+		if(!grabbed) {mygrabx=mouse::x; mygraby=mouse::y;}
+		if(mouse::holding(GameBreaker::left)) {
+			window::set_pos(mouse::x+display::mouse_x,mouse::x+display::mouse_y);
+			grabbed=1;
+		} else grabbed=0;
+	} else grabbed=0;
 	return;
 }
 
@@ -491,12 +503,30 @@ void objTopMenu_Draw(GBObject *self) {
 	if(eaTheme->drawTopMenuImg) {
 		//nothing
 	} else {
-		draw::color_sdl(col::dk_gray);
+		draw::color(eaTheme->topMenuBgCol);
 		draw::rect(eaTheme->bt[TOPMENU].x,eaTheme->bt[TOPMENU].y,eaTheme->topMenuW,eaTheme->topMenuH,0);
-		draw::color_sdl(col::white);
+		draw::color(eaTheme->topMenuFgCol);
 		draw::set_font(fntMain);
 		draw::set_text_align(0, 0);
 		draw::text(4,0,myTopText);
+		draw::color_sdl(col::white);
+	}
+	int i=0; repeat(2) {
+		int mycontrol=math::point_in_rect(mouse::x,mouse::y,
+										  eaTheme->controlx[i],eaTheme->controly[i],
+									eaTheme->controlx[i]+eaTheme->controlspr->w,eaTheme->controly[i]+eaTheme->controlspr->h);
+
+		draw::sprite(eaTheme->controlspr,i*3+mycontrol+(mouse::holding(mb::left)&&mycontrol),eaTheme->controlx[i],eaTheme->controly[i],1,1,0);
+
+		if(mycontrol&&mouse::released(mb::left)) {
+			switch(i) {
+				case 0: window::minimize(1); break;
+				case 1: screen::end(); break;
+				default: break;
+			}
+		}
+
+		i++;
 	}
 	return;
 }
